@@ -1,2 +1,1 @@
-# Advent-of-Code-2021
-Wheeeeeee
+# Advent of Code 2021
