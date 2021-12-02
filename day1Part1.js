@@ -22,7 +22,8 @@ function doThing(fileName) {
   let index = 0;
 
   for (let i = 1; i < inputArray.length; i++) {
-    if (inputArray[i] > inputArray[i - 1]) {
+    if (parseInt(inputArray[i]) > parseInt(inputArray[i - 1])) {
+      // console.log(inputArray[i]);
       index++;
     }
   }
@@ -31,6 +32,9 @@ function doThing(fileName) {
 }
 
 function run() {
+  doThing('testInput.txt');
+  doThing('testInput2.txt');
+  doThing('testInput3.txt');
   doThing('day1Input.txt');
 }
 
