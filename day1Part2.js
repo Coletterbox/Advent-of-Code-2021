@@ -7,8 +7,7 @@ function readInput(fileName) {
     const lines = data.split(/\r?\n/);
 
     lines.forEach((line) => {
-      // console.log(line);
-      inputArray.push(line);
+      inputArray.push(parseInt(line));
     });
   } catch (err) {
     console.error(err);
@@ -20,10 +19,13 @@ function readInput(fileName) {
 function doThing(fileName) {
   const inputArray = readInput(fileName);
   let index = 0;
+  let prevTotal = 0;
+  let currentTotal = 0;
 
-  for (let i = 1; i < inputArray.length; i++) {
-    if (parseInt(inputArray[i]) > parseInt(inputArray[i - 1])) {
-      // console.log(inputArray[i]);
+  for (let i = 4; i < inputArray.length; i++) {
+    prevTotal = inputArray[i - 4] + inputArray[i - 3] + inputArray[i - 2];
+    currentTotal = inputArray[i - 3] + inputArray[i - 2] + inputArray[i - 1];
+    if (currentTotal > prevTotal) {
       index++;
     }
   }
@@ -40,4 +42,4 @@ function run() {
 
 run();
 
-// 1139
+// 1136
