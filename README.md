@@ -1,4 +1,4 @@
 # Advent of Code 2021
 
 ## Scoreboard:
-### Alonzo | Colette
+### 8==D~Alonzo | Colette
