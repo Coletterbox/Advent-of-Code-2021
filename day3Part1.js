@@ -22,27 +22,6 @@ function doThing(fileName) {
   let gammaArray = [];
   let epsilonArray = [];
 
-  // for (let i = 0; i < inputArray.length; i++) {
-  //   let zeroCount = 0;
-  //   let oneCount = 0;
-  //   for (let j = 0; j < inputArray[i].length; j++) {
-  //     if (inputArray[i][j] === '0') {
-  //       zeroCount++;
-  //     // assumes all input is valid
-  //     } else {
-  //       oneCount++;
-  //     }
-  //   }
-  //   // assumes even scores are not going to happen
-  //   if (zeroCount > oneCount) {
-  //     gammaArray.push('0');
-  //     epsilonArray.push('1');
-  //   } else {
-  //     gammaArray.push('1');
-  //     epsilonArray.push('0');
-  //   }
-  // }
-
   for (let i = 0; i < inputArray[0].length; i++) {
     let zeroCount = 0;
     let oneCount = 0;
