@@ -32,6 +32,8 @@ function getBoards(fileName) {
     boardArray.push(inputArray[i]);
   }
 
+  // for
+
   console.log('boards:', boardArray);
 }
 
