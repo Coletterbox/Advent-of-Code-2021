@@ -27,15 +27,50 @@ function getNumbers(fileName) {
 function getBoards(fileName) {
   let inputArray = readInput(fileName);
   let boardArray = [];
+  let newBoardArray = [];
+  let newBoardArray2 = [];
+  let newBoardArray3 = [[[]]];
 
   for (let i = 2; i < inputArray.length; i++) {
     boardArray.push(inputArray[i]);
   }
 
-  // for
+  for (let i = 0; i < boardArray.length; i+=6) {
+    newBoardArray.push(boardArray.slice(i, i+6));
+  }
 
-  console.log('boards:', boardArray);
+  console.log('boardArray:', boardArray);
+  console.log('newBoardArray:', newBoardArray);
+
+  for (let i = 0; i < newBoardArray.length; i++) {
+    for (let j = 0; j < newBoardArray[i].length; j++) {
+      console.log('newBoardArray[i][j]', newBoardArray[i][j]);
+      newBoardArray2.push(newBoardArray[i][j].split(' ').filter(el => {return el != null && el != ''}));
+    }
+  }
+
+  console.log('newBoardArray2:', newBoardArray2);
+
+  return newBoardArray2;
 }
+
+function createMarkerArray(fileName) {
+  let markerArray = [];
+  let boardArray = getBoards(fileName);
+}
+
+// 0, 1, 2, 3, 4
+// 5, 6, 7, 8, 9
+// 10, 11, 12, 13, 14
+// 15, 16, 17, 18, 19
+// 20, 21, 22, 23, 24
+// 0, 5, 10, 15, 20
+// 1, 6, 11, 16, 21
+// 2, 7, 12, 17, 22
+// 3, 8, 13, 18, 23
+// 4, 9, 14, 19, 24
+// 0, 6, 12, 18, 24
+// 4, 8, 12, 16, 20
 
 function run() {
   getNumbers('day4TestInput.txt');
