@@ -29,7 +29,8 @@ function getBoards(fileName) {
   let boardArray = [];
   let newBoardArray = [];
   let newBoardArray2 = [];
-  let newBoardArray3 = [[[]]];
+  // let newBoardArray3 = [];
+  let newBoardArray3 = [[]];
 
   for (let i = 2; i < inputArray.length; i++) {
     boardArray.push(inputArray[i]);
@@ -51,7 +52,29 @@ function getBoards(fileName) {
 
   console.log('newBoardArray2:', newBoardArray2);
 
-  return newBoardArray2;
+  let newArrayIndex = 0;
+  for (let i = 0; i < newBoardArray2.length; i++) {
+    if (newBoardArray2[i].length === 0) {
+      // newBoardArray3.push([]);
+      // newBoardArray3.push([[]]);
+      newBoardArray3.push([]);
+      newArrayIndex++;
+    } else {
+      // newBoardArray3.push(newBoardArray2[i]);
+      // newBoardArray3[newArrayIndex] = newBoardArray2[i];
+      // newBoardArray3[newArrayIndex].push(newBoardArray2[i]);
+      // newBoardArray3[newArrayIndex] = newBoardArray3[newArrayIndex].push(newBoardArray2[i]);
+      // newBoardArray3[newArrayIndex] = newBoardArray3[newArrayIndex]+=newBoardArray2[i];
+      // newBoardArray3[newArrayIndex]+='test';
+      // newBoardArray3[newArrayIndex].push('test');
+      newBoardArray3[newArrayIndex].push(newBoardArray2[i]);
+      console.log(newBoardArray3[newArrayIndex]);
+    }
+  }
+
+  console.log('newBoardArray3:', newBoardArray3);
+
+  return newBoardArray3;
 }
 
 function createMarkerArray(fileName) {
@@ -69,8 +92,13 @@ function createMarkerArray(fileName) {
 // 2, 7, 12, 17, 22
 // 3, 8, 13, 18, 23
 // 4, 9, 14, 19, 24
+// oops, diagonals DON'T count...
 // 0, 6, 12, 18, 24
 // 4, 8, 12, 16, 20
+
+// sort indexes
+// check list of indexes contains one of above combinations
+
 
 function run() {
   getNumbers('day4TestInput.txt');
