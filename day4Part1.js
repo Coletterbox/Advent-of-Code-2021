@@ -20,7 +20,7 @@ function readInput(fileName) {
 
 function getNumbers(fileName) {
   let inputArray = readInput(fileName);
-  console.log(inputArray[0]);
+  console.log('numbers:', inputArray[0]);
   return inputArray[0];
 }
 
@@ -77,9 +77,35 @@ function getBoards(fileName) {
   return newBoardArray3;
 }
 
-function createMarkerArray(fileName) {
+// function createMarkerArray(fileName) {
+//   let markerArray = [];
+//   let boardArray = getBoards(fileName);
+// }
+
+// 7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
+
+function checkNumbers(fileName) {
+  let numbers = getNumbers(fileName);
+  numbers = numbers.split(',');
+  const boards = getBoards(fileName);
   let markerArray = [];
-  let boardArray = getBoards(fileName);
+
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = 0; j < boards.length; j++) {
+      for (let k = 0; k < boards[j].length; k++) {
+        for (let l = 0; l < boards[j][k].length; l++) {
+          // console.log(boards[j][k][l]);
+          if (boards[j][k][l] === numbers[i]) {
+            markerArray.push(j.toString() + ' ' + k.toString() + ' ' + l.toString());
+            // check markerArray for five with same j and k (and consecutive ls) (bearing in mind there are doubles for some reason that I could try to figure out but...)
+            // for (let i = 0; i < markerArray.length; i++)
+            // check markerArray for five with same j and l (and consecutive ks)
+          }
+        }
+      }
+    }
+  }
+  console.log(markerArray);
 }
 
 // 0, 1, 2, 3, 4
@@ -103,6 +129,7 @@ function createMarkerArray(fileName) {
 function run() {
   getNumbers('day4TestInput.txt');
   getBoards('day4TestInput.txt');
+  checkNumbers('day4TestInput.txt');
 }
 
 run();
