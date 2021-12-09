@@ -122,8 +122,8 @@ function checkNumbers(fileName) {
                   // tally.push([current[0], current[1]]);
                   // console.log('tally:', tally
                   let indexOfLastNumber = i;
-                  console.log(i);
-                  console.log(current[0]);
+                  console.log('i', i);
+                  console.log('index of winning board', current[0]);
                   return current[0]; // this is the index of the winning board
               }
             }
@@ -184,7 +184,13 @@ function run() {
   // const boards = getBoards('day4TestInput.txt');
   // const indexOfWinningBoard = checkNumbers('day4TestInput.txt');
   // console.log(boards[indexOfWinningBoard]); // winning board as two-dimensional array
-  findSumOfUnmarkedNumbers('day4TestInput.txt');
+
+  // findSumOfUnmarkedNumbers('day4TestInput.txt');
+  // findSumOfUnmarkedNumbers('day4Input.txt');
+
+  // checkNumbers('day4Input.txt');
+  // checkNumbers('day4TestInput.txt');
+  checkNumbers('day4TestInput2.txt');
 }
 
 run();
