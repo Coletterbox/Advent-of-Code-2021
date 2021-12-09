@@ -121,6 +121,8 @@ function checkNumbers(fileName) {
               ) {
                   // tally.push([current[0], current[1]]);
                   // console.log('tally:', tally
+                  let indexOfLastNumber = i;
+                  console.log(i);
                   console.log(current[0]);
                   return current[0]; // this is the index of the winning board
               }
