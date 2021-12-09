@@ -105,8 +105,8 @@ function checkNumbers(fileName) {
               let previous2 = markerArray[i-2].split(' ');
               let previous = markerArray[i-1].split(' ');
               let current = markerArray[i].split(' ');
-              console.log('previous:', previous);
-              console.log('current:', current);
+              // console.log('previous:', previous);
+              // console.log('current:', current);
               // let tally = [];
               // ...idk
               if (markerArray.length > 4
@@ -151,11 +151,38 @@ function checkNumbers(fileName) {
 // sort indexes
 // check list of indexes contains one of above combinations
 
+let sumOfUnmarkedNumbers = 0;
+function findSumOfUnmarkedNumbers(fileName) {
+  // (of winning board)
+  const numbers = getNumbers(fileName).split(',');
+  const boards = getBoards(fileName);
+  const indexOfWinningBoard = checkNumbers(fileName);
+  let winningBoard = boards[indexOfWinningBoard]; // winning board as two-dimensional array
+  for (let i = 0; i < winningBoard.length; i++) {
+    for (let j = 0; j < winningBoard[i].length; j++) {
+      // for (let k = 0; k < numbers.length; k++) {
+      //   if (winningBoard[i][j] !)
+      // }
+      console.log('numbers:', numbers);
+      console.log('winningBoard[i][j]:', winningBoard[i][j]);
+      console.log(numbers.includes(winningBoard[i][j].toString()));
+      // if (numbers.includes(winningBoard[i][j].toString()) == false) {
+      //   sumOfUnmarkedNumbers+=parseInt(winningBoard[i][j]);
+      //   console.log(sumOfUnmarkedNumbers);
+      // }
+    }
+  }
+  console.log(sumOfUnmarkedNumbers);
+  return sumOfUnmarkedNumbers;
+}
+
 
 function run() {
-  getNumbers('day4TestInput.txt');
-  getBoards('day4TestInput.txt');
-  const indexOfWinningBoard = checkNumbers('day4TestInput.txt');
+  // getNumbers('day4TestInput.txt');
+  // const boards = getBoards('day4TestInput.txt');
+  // const indexOfWinningBoard = checkNumbers('day4TestInput.txt');
+  // console.log(boards[indexOfWinningBoard]); // winning board as two-dimensional array
+  findSumOfUnmarkedNumbers('day4TestInput.txt');
 }
 
 run();
