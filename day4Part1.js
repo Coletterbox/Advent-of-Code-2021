@@ -97,8 +97,19 @@ function checkNumbers(fileName) {
           // console.log(boards[j][k][l]);
           if (boards[j][k][l] === numbers[i]) {
             markerArray.push(j.toString() + ' ' + k.toString() + ' ' + l.toString());
-            // check markerArray for five with same j and k (and consecutive ls) (bearing in mind there are doubles for some reason that I could try to figure out but...)
-            // for (let i = 0; i < markerArray.length; i++)
+            markerArray.sort(); // this is alphabetical but it's fine for this purpose
+            // check markerArray for five with same j and k (and consecutive ls (keep in mind real input will produce two-digit numbers)
+            for (let i = 1; i < markerArray.length; i++) {
+              let previous = markerArray[i-1].split(' ');
+              let current = markerArray[i].split(' ');
+              console.log('previous:', previous);
+              console.log('current:', current);
+              let tally = [];
+              if (current[0] == previous[0] && current[1] == previous[1]) {
+                tally.push([current[0], current[1]]);
+                console.log('tally:', tally);
+              }
+            }
             // check markerArray for five with same j and l (and consecutive ks)
           }
         }
