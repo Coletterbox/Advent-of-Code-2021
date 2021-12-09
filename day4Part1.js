@@ -99,15 +99,30 @@ function checkNumbers(fileName) {
             markerArray.push(j.toString() + ' ' + k.toString() + ' ' + l.toString());
             markerArray.sort(); // this is alphabetical but it's fine for this purpose
             // check markerArray for five with same j and k (and consecutive ls (keep in mind real input will produce two-digit numbers)
-            for (let i = 1; i < markerArray.length; i++) {
+            for (let i = 4; i < markerArray.length; i++) {
+              let previous4 = markerArray[i-4].split(' ');
+              let previous3 = markerArray[i-3].split(' ');
+              let previous2 = markerArray[i-2].split(' ');
               let previous = markerArray[i-1].split(' ');
               let current = markerArray[i].split(' ');
               console.log('previous:', previous);
               console.log('current:', current);
-              let tally = [];
-              if (current[0] == previous[0] && current[1] == previous[1]) {
-                tally.push([current[0], current[1]]);
-                console.log('tally:', tally);
+              // let tally = [];
+              // ...idk
+              if (markerArray.length > 4
+                && current[0] == previous[0]
+                && current[1] == previous[1]
+                && previous[0] == previous2[0]
+                && previous[1] == previous2[1]
+                && previous2[0] == previous3[0]
+                && previous2[1] == previous3[1]
+                && previous3[0] == previous4[0]
+                && previous3[1] == previous4[1]
+              ) {
+                  // tally.push([current[0], current[1]]);
+                  // console.log('tally:', tally
+                  console.log(current[0]);
+                  return current[0]; // this is the index of the winning board
               }
             }
             // check markerArray for five with same j and l (and consecutive ks)
@@ -140,7 +155,7 @@ function checkNumbers(fileName) {
 function run() {
   getNumbers('day4TestInput.txt');
   getBoards('day4TestInput.txt');
-  checkNumbers('day4TestInput.txt');
+  const indexOfWinningBoard = checkNumbers('day4TestInput.txt');
 }
 
 run();
