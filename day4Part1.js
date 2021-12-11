@@ -89,6 +89,7 @@ function checkNumbers(fileName) {
   numbers = numbers.split(',');
   const boards = getBoards(fileName);
   let markerArray = [];
+  let indexOfLastNumber = 0;
 
   for (let i = 0; i < numbers.length; i++) {
     for (let j = 0; j < boards.length; j++) {
@@ -108,7 +109,7 @@ function checkNumbers(fileName) {
               // console.log('previous:', previous);
               // console.log('current:', current);
               // let tally = [];
-              // ...idk
+              // ...idk I WAS TIRED IT'S FINE
               if (markerArray.length > 4
                 && current[0] == previous[0]
                 && current[1] == previous[1]
@@ -121,7 +122,7 @@ function checkNumbers(fileName) {
               ) {
                   // tally.push([current[0], current[1]]);
                   // console.log('tally:', tally
-                  let indexOfLastNumber = i; // why did I write this
+                  indexOfLastNumber = i; // this isn't correct; i is the index of something else
                   console.log('i', i);
                   console.log('index of winning board', current[0]);
                   return current[0]; // this is the index of the winning board
