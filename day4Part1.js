@@ -299,7 +299,7 @@ function run() {
   // const indexOfWinningBoard = checkNumbers('day4TestInput.txt');
   // console.log(boards[indexOfWinningBoard]); // winning board as two-dimensional array
 
-  findSumOfUnmarkedNumbers('day4TestInput.txt');
+  // findSumOfUnmarkedNumbers('day4TestInput.txt');
   // findSumOfUnmarkedNumbers('day4Input.txt');
 
   // checkNumbers('day4Input.txt');
@@ -307,7 +307,7 @@ function run() {
   // checkNumbers('day4TestInput2.txt');
   // checkNumbers('day4TestInput3.txt');
 
-  // getResult('day4TestInput.txt');
+  getResult('day4TestInput.txt');
 }
 
 run();
