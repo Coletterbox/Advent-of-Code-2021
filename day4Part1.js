@@ -307,7 +307,8 @@ function run() {
   // checkNumbers('day4TestInput2.txt');
   // checkNumbers('day4TestInput3.txt');
 
-  getResult('day4TestInput.txt');
+  // getResult('day4TestInput.txt'); // 24 * 188 = 4512
+  getResult('day4Input.txt'); // 96 * 188 = 63552
 }
 
 run();
