@@ -121,7 +121,7 @@ function checkNumbers(fileName) {
               ) {
                   // tally.push([current[0], current[1]]);
                   // console.log('tally:', tally
-                  let indexOfLastNumber = i;
+                  let indexOfLastNumber = i; // why did I write this
                   console.log('i', i);
                   console.log('index of winning board', current[0]);
                   return current[0]; // this is the index of the winning board
@@ -178,6 +178,9 @@ function findSumOfUnmarkedNumbers(fileName) {
   return sumOfUnmarkedNumbers;
 }
 
+function getResult() {
+    return sumOfUnmarkedNumbers * finalNumber;
+}
 
 function run() {
   // getNumbers('day4TestInput.txt');
@@ -189,8 +192,9 @@ function run() {
   // findSumOfUnmarkedNumbers('day4Input.txt');
 
   // checkNumbers('day4Input.txt');
-  // checkNumbers('day4TestInput.txt');
-  checkNumbers('day4TestInput2.txt');
+  checkNumbers('day4TestInput.txt');
+  // checkNumbers('day4TestInput2.txt');
+  // checkNumbers('day4TestInput3.txt');
 }
 
 run();
