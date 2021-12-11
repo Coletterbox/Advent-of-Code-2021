@@ -91,12 +91,12 @@ function checkNumbers(fileName) {
   let markerArray = [];
   let indexOfLastNumber = 0;
 
-  for (let i = 0; i < numbers.length; i++) {
+  for (let indexOfNumbers = 0; indexOfNumbers < numbers.length; indexOfNumbers++) {
     for (let j = 0; j < boards.length; j++) {
       for (let k = 0; k < boards[j].length; k++) {
         for (let l = 0; l < boards[j][k].length; l++) {
           // console.log(boards[j][k][l]);
-          if (boards[j][k][l] === numbers[i]) {
+          if (boards[j][k][l] === numbers[indexOfNumbers]) {
             markerArray.push(j.toString() + ' ' + k.toString() + ' ' + l.toString());
             markerArray.sort(); // this is alphabetical but it's fine for this purpose
             // check markerArray for five with same j and k (and consecutive ls (keep in mind real input will produce two-digit numbers)
@@ -122,8 +122,9 @@ function checkNumbers(fileName) {
               ) {
                   // tally.push([current[0], current[1]]);
                   // console.log('tally:', tally
-                  indexOfLastNumber = i; // this isn't correct; i is the index of something else
-                  console.log('i', i);
+                  // indexOfLastNumber = i; // this isn't correct; i is the index of something else
+                  indexOfLastNumber = indexOfNumbers;
+                  console.log('indexOfLastNumber', indexOfLastNumber);
                   console.log('index of winning board', current[0]);
                   return current[0]; // this is the index of the winning board
               }
