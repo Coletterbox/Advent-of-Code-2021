@@ -185,8 +185,8 @@ function getResult(fileName) {
 }
 
 function run() {
-  // getResult('day4TestInput.txt'); // 24 * 188 = 4512
-  getResult('day4Input.txt'); // 96 * 188 = 63552
+  // getResult('day4TestInput.txt'); // 4512
+  getResult('day4Input.txt'); // 63552
 }
 
 run();
