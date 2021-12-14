@@ -157,12 +157,6 @@ function plotLines(fileName) {
         }
     }
 
-    // diagonalLines: [
-    //     [ '8,0', '0,8' ],
-    //     [ '6,4', '2,0' ],
-    //     [ '0,0', '8,8' ],
-    //     [ '5,5', '8,2' ]
-    // ]
     for (let i = 0; i < diagonalLines.length; i++) {
         let startX = parseInt(diagonalLines[i][0].split(',')[0]);
         let endX = parseInt(diagonalLines[i][1].split(',')[0]);
@@ -229,6 +223,6 @@ function run(fileName) {
 
 // run('day5TestInput.txt'); // 12
 // run('day5TestInput2.txt');
-run('day5Input.txt'); // 5280
+run('day5Input.txt'); // 16716
 // run('day5TestInput4.txt');
 // run('day5TestInput5.txt');
