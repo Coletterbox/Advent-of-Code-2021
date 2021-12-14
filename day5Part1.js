@@ -124,9 +124,9 @@ function plotLines(fileName) {
     const horizontalLines = getHorizontalLines(fileName);
 
     for (let i = 0; i < verticalLines.length; i++) {
-        let x = verticalLines[i][0].split(',')[0];
-        let startY = verticalLines[i][0].split(',')[1];
-        let endY = verticalLines[i][1].split(',')[1];
+        let x = parseInt(verticalLines[i][0].split(',')[0]);
+        let startY = parseInt(verticalLines[i][0].split(',')[1]);
+        let endY = parseInt(verticalLines[i][1].split(',')[1]);
         if (startY > endY) {
             let lowerY = endY;
             let higherY = startY;
@@ -145,11 +145,13 @@ function plotLines(fileName) {
     //     [ '3,4', '1,4' ]
     // ]
     for (let i = 0; i < horizontalLines.length; i++) {
-        let startX = horizontalLines[i][0].split(',')[0];
-        let endX = horizontalLines[i][1].split(',')[0];
-        let y = horizontalLines[i][0].split(',')[1];
+        let startX = parseInt(horizontalLines[i][0].split(',')[0]);
+        let endX = parseInt(horizontalLines[i][1].split(',')[0]);
+        let y = parseInt(horizontalLines[i][0].split(',')[1]);
         console.log('y:', y);
-        if (startX > endX) {
+        console.log(typeof startX); // omg screw you JavaScript
+        if (parseInt(startX) > parseInt(endX)) {
+            console.log('switching x orders');
             let lowerX = endX;
             let higherX = startX;
             startX = lowerX;
@@ -158,6 +160,7 @@ function plotLines(fileName) {
         console.log('startX, endX:', startX, endX);
         // console.log('board again:', board);
         for (let j = startX; j <= endX; j++) {
+            console.log('typeof board[y][j]:', typeof board[y][j]);
             console.log(board[y]);
             board[y][j]++;
         }
@@ -174,11 +177,12 @@ function countOverlap(fileName) {
         // console.log('markedBoard[i]:', markedBoard[i]);
         // console.log('markedBoard[i].length:', markedBoard[i].length);
         for (let j = 0; j < markedBoard[i].length; j++) {
-            if (markedBoard[i][j] > 1) {
+            if (parseInt(markedBoard[i][j]) > 1) {
                 total++;
             }
         }
     }
+    console.log('markedBoard:', markedBoard);
     console.log(total);
     return total;
 }
@@ -195,4 +199,6 @@ function run(fileName) {
 
 // run('day5TestInput.txt'); // 5
 // run('day5TestInput2.txt');
-run('day5Input.txt'); // 84
+// run('day5Input.txt'); // 4896
+// run('day5TestInput4.txt');
+run('day5TestInput5.txt');
