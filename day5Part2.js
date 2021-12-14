@@ -218,7 +218,7 @@ function run(fileName) {
     // getVerticalLines(fileName);
     // getHorizontalLines(fileName);
     // plotLines(fileName);
-    countOverlap(fileName); // 12
+    countOverlap(fileName);
 }
 
 // run('day5TestInput.txt'); // 12
