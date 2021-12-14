@@ -199,6 +199,6 @@ function run(fileName) {
 
 // run('day5TestInput.txt'); // 5
 // run('day5TestInput2.txt');
-// run('day5Input.txt'); // 4896
+run('day5Input.txt'); // 5280
 // run('day5TestInput4.txt');
-run('day5TestInput5.txt');
+// run('day5TestInput5.txt');
