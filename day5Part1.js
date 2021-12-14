@@ -155,12 +155,28 @@ function plotLines(fileName) {
         // console.log('board again:', board);
         for (let j = startX; j <= endX; j++) {
             console.log(board[y]);
-            board[y][j]++; // this should be the one that works
-            // board[j][y]++;
+            board[y][j]++;
         }
     }
     console.log(board);
     return board;
+}
+
+let total = 0;
+function countOverlap(fileName) {
+    const markedBoard = plotLines(fileName);
+    console.log('markedBoard:', markedBoard);
+    for (let i = 0; i < markedBoard.length; i++) {
+        console.log('markedBoard[i]:', markedBoard[i]);
+        console.log('markedBoard[i].length:', markedBoard[i].length);
+        for (let j = 0; j < markedBoard[i].length; j++) {
+            if (markedBoard[i][j] > 1) {
+                total++;
+            }
+        }
+    }
+    console.log(total);
+    return total;
 }
 
 function run(fileName) {
@@ -169,7 +185,8 @@ function run(fileName) {
     // createBoard(fileName);
     // getVerticalLines(fileName);
     // getHorizontalLines(fileName);
-    plotLines(fileName);
+    // plotLines(fileName);
+    countOverlap(fileName); // 5
 }
 
 run('day5TestInput.txt');
