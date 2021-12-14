@@ -1,8 +1,4 @@
-// parse input
-// find max X and Y; create 2D array for lines (populate with 0s)
-// only consider horizontal and vertical lines, i.e. Xs are equal or Ys are equal
-// increment relevant array items (plot lines)
-// count array items that are over 1
+// I obviously should have written a solution that solved both parts of this in the first place...
 
 function readInput(fileName) {
     const fs = require('fs');
@@ -26,27 +22,12 @@ function readInput(fileName) {
 function parseInput(fileName) {
     const inputArray = readInput(fileName);
     let resultArray = [];
-    // let resultArray2 = [];
     inputArray.forEach(element => {
         resultArray.push(element.split(' -> '));
     });
 
     console.log('resultArray:', resultArray);
-    // resultArray.forEach(element => {
-    //     element = [element[0].split(','), element[1].split(',')];
-    //     resultArray2.push(element);
-    //     // resultArray2.push([element[0].split(','), element[1].split(',')]);
-    // });
 
-    // for (let i = 0; i < resultArray2.length; i++) {
-    //     for (let j = 0; j < resultArray2[i].length; j++) {
-    //         resultArray2[i][j] = parseInt(resultArray2[i][j]);
-    //         // console.log(resultArray2[i][j]);
-    //     }
-    // }
-
-    // console.log('resultArray2:', resultArray2);
-    // return resultArray2;
     return resultArray;
 }
 
@@ -76,7 +57,6 @@ function createBoard(fileName) {
     maxX = xArray[xArray.length-1];
     maxY = yArray[yArray.length-1];
     console.log(maxX, maxY);
-    // added the +1 to maxY and maxX because it seems like it's needed, but haven't fully thought it through
     for (let y = 0; y < maxY+1; y++) {
         resultArray[y] = [];
         for (let x = 0; x < maxX+1; x++) {
@@ -118,10 +98,27 @@ function getVerticalLines(fileName) {
     return verticalLineArray;
 }
 
+function getDiagonalLines(fileName) {
+    const inputArray = parseInput(fileName);
+    let diagonalLineArray = [];
+    console.log(inputArray);
+    for (let i = 0; i < inputArray.length; i++) {
+        console.log(inputArray[i][0]);
+        if ((inputArray[i][0].split(',')[0] != inputArray[i][1].split(',')[0])
+            && (inputArray[i][0].split(',')[1] != inputArray[i][1].split(',')[1])) {
+                diagonalLineArray.push(inputArray[i]);
+        }
+    }
+    console.log(diagonalLineArray);
+    return diagonalLineArray;
+}
+
 function plotLines(fileName) {
     let board = createBoard(fileName);
     const verticalLines = getVerticalLines(fileName);
     const horizontalLines = getHorizontalLines(fileName);
+    const diagonalLines = getDiagonalLines(fileName);
+    console.log('diagonalLines:', diagonalLines);
 
     for (let i = 0; i < verticalLines.length; i++) {
         let x = parseInt(verticalLines[i][0].split(',')[0]);
@@ -138,12 +135,6 @@ function plotLines(fileName) {
         }
     }
 
-    // [
-    //     [ '0,9', '5,9' ],
-    //     [ '9,4', '3,4' ],
-    //     [ '0,9', '2,9' ],
-    //     [ '3,4', '1,4' ]
-    // ]
     for (let i = 0; i < horizontalLines.length; i++) {
         let startX = parseInt(horizontalLines[i][0].split(',')[0]);
         let endX = parseInt(horizontalLines[i][1].split(',')[0]);
@@ -161,10 +152,52 @@ function plotLines(fileName) {
         // console.log('board again:', board);
         for (let j = startX; j <= endX; j++) {
             console.log('typeof board[y][j]:', typeof board[y][j]);
-            console.log(board[y]);
+            // console.log(board[y]);
             board[y][j]++;
         }
     }
+
+    // diagonalLines: [
+    //     [ '8,0', '0,8' ],
+    //     [ '6,4', '2,0' ],
+    //     [ '0,0', '8,8' ],
+    //     [ '5,5', '8,2' ]
+    // ]
+    for (let i = 0; i < diagonalLines.length; i++) {
+        let startX = parseInt(diagonalLines[i][0].split(',')[0]);
+        let endX = parseInt(diagonalLines[i][1].split(',')[0]);
+        let startY = parseInt(diagonalLines[i][0].split(',')[1]);
+        let endY = parseInt(diagonalLines[i][1].split(',')[1]);
+        // right to left
+        if (startX > endX) {
+            console.log('switching x orders');
+            let lowerX = endX;
+            let higherX = startX;
+            startX = lowerX;
+            endX = higherX;
+            let placeholder = startY;
+            startY = endY;
+            endY = placeholder;
+        }
+        console.log('startX, endX', startX, endX);
+        console.log('startY, endY', startY, endY);
+        // if positive gradient (relative to origin being top left for some reason)
+        if (endY > startY) {
+            let k = startX;
+            for (let j = startY; j <= endY; j++) {
+                board[j][k]++;
+                k++;
+            }
+        // if negative gradient
+        } else {
+            let k = startX;
+            for (let j = startY; j >= endY; j--) {
+                board[j][k]++;
+                k++;
+            }
+        }
+    }
+
     console.log(board);
     return board;
 }
@@ -172,10 +205,7 @@ function plotLines(fileName) {
 function countOverlap(fileName) {
     let total = 0;
     const markedBoard = plotLines(fileName);
-    // console.log('markedBoard:', markedBoard);
     for (let i = 0; i < markedBoard.length; i++) {
-        // console.log('markedBoard[i]:', markedBoard[i]);
-        // console.log('markedBoard[i].length:', markedBoard[i].length);
         for (let j = 0; j < markedBoard[i].length; j++) {
             if (parseInt(markedBoard[i][j]) > 1) {
                 total++;
@@ -197,8 +227,8 @@ function run(fileName) {
     countOverlap(fileName); // 5
 }
 
-// run('day5TestInput.txt'); // 5
+run('day5TestInput.txt'); // 5
 // run('day5TestInput2.txt');
-run('day5Input.txt'); // 5280
+// run('day5Input.txt'); // 5280
 // run('day5TestInput4.txt');
 // run('day5TestInput5.txt');
