@@ -65,8 +65,12 @@ function createBoard(fileName) {
         let y1 = inputArray[i][1].split(',')[1];
         yArray.push(parseInt(y0), parseInt(y1));
     }
-    xArray.sort();
-    yArray.sort();
+    xArray.sort(function(a, b) {
+        return a - b;
+      });
+    yArray.sort(function(a, b) {
+        return a - b;
+      });;
     console.log(xArray);
     console.log(yArray);
     maxX = xArray[xArray.length-1];
@@ -162,13 +166,13 @@ function plotLines(fileName) {
     return board;
 }
 
-let total = 0;
 function countOverlap(fileName) {
+    let total = 0;
     const markedBoard = plotLines(fileName);
-    console.log('markedBoard:', markedBoard);
+    // console.log('markedBoard:', markedBoard);
     for (let i = 0; i < markedBoard.length; i++) {
-        console.log('markedBoard[i]:', markedBoard[i]);
-        console.log('markedBoard[i].length:', markedBoard[i].length);
+        // console.log('markedBoard[i]:', markedBoard[i]);
+        // console.log('markedBoard[i].length:', markedBoard[i].length);
         for (let j = 0; j < markedBoard[i].length; j++) {
             if (markedBoard[i][j] > 1) {
                 total++;
@@ -189,5 +193,6 @@ function run(fileName) {
     countOverlap(fileName); // 5
 }
 
-run('day5TestInput.txt');
+// run('day5TestInput.txt'); // 5
 // run('day5TestInput2.txt');
+run('day5Input.txt'); // 84
