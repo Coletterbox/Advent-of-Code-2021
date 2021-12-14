@@ -52,7 +52,7 @@ function incrementDays(fileName, numberOfDays) {
     return resultArray;
 }
 
-function countLanternFish(fileName, numberOfDays) {
+function countLanternfish(fileName, numberOfDays) {
     return incrementDays(fileName, numberOfDays).length;
 }
 
@@ -60,9 +60,9 @@ function run(fileName) {
     // readInput('day6TestInput.txt');
     // readInput('day6Input.txt');
     // incrementDays('day6TestInput.txt', 18);
-    console.log(countLanternFish('day6TestInput.txt', 18)); // 26
-    console.log(countLanternFish('day6TestInput.txt', 80)); // 5934
-    console.log(countLanternFish('day6Input.txt', 80)); // 383160
+    console.log(countLanternfish('day6TestInput.txt', 18)); // 26
+    console.log(countLanternfish('day6TestInput.txt', 80)); // 5934
+    console.log(countLanternfish('day6Input.txt', 80)); // 383160
 }
 
 run();
