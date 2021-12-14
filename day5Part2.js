@@ -224,11 +224,11 @@ function run(fileName) {
     // getVerticalLines(fileName);
     // getHorizontalLines(fileName);
     // plotLines(fileName);
-    countOverlap(fileName); // 5
+    countOverlap(fileName); // 12
 }
 
-run('day5TestInput.txt'); // 5
+// run('day5TestInput.txt'); // 12
 // run('day5TestInput2.txt');
-// run('day5Input.txt'); // 5280
+run('day5Input.txt'); // 5280
 // run('day5TestInput4.txt');
 // run('day5TestInput5.txt');
