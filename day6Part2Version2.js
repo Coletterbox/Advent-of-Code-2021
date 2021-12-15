@@ -35,10 +35,12 @@ function convertArrayToObject(fileName) {
                 console.log(quantity);
                 console.log(typeof quantity);
                 // quantity = 'test';
-                quantity++;
-                // idk why this doesn't work
-                console.log('updated quantity:', quantity);
-                console.log('updated quantities:', quantities);
+                // quantity++;
+                // // idk why this doesn't work
+                // console.log('updated quantity:', quantity);
+                // console.log('updated quantities:', quantities);
+                // never mind; I get why it wouldn't work
+                quantities[element]++;
             }
         }
     });
