@@ -23,7 +23,7 @@ function readInput(fileName) {
 }
 
 function getRange(fileName) {
-    const positions = readInput('day7TestInput.txt');
+    const positions = readInput(fileName);
     let sorted = positions.sort(function(a, b) {return a-b});
     const lowest = sorted[0];
     const highest = sorted[sorted.length-1];
@@ -63,15 +63,18 @@ function compareArrays(array1, array2) {
 }
 
 function runTests() {
-    console.log(readInput('day7TestInput.txt'));
-    const testInputRangeArray = [
-        0,  1,  2,  3,  4,  5,  6,
-        7,  8,  9, 10, 11, 12, 13,
-        14, 15, 16
-    ];
-    console.log(getRange('day7TestInput.txt'));
-    assert(compareArrays(testInputRangeArray, getRange('day7TestInput.txt')), "Range is incorrect.");
-    assert.equal(37, iterateThroughRange('day7TestInput.txt'));
+    // console.log(readInput('day7TestInput.txt'));
+    // const testInputRangeArray = [
+    //     0,  1,  2,  3,  4,  5,  6,
+    //     7,  8,  9, 10, 11, 12, 13,
+    //     14, 15, 16
+    // ];
+    // console.log(getRange('day7TestInput.txt'));
+    // assert(compareArrays(testInputRangeArray, getRange('day7TestInput.txt')), "Range is incorrect.");
+    // assert.equal(37, iterateThroughRange('day7TestInput.txt'));
+    // iterateThroughRange('day7Input.txt');
+    // console.log(getRange('day7Input.txt'));
+    assert.equal(341558, iterateThroughRange('day7Input.txt'));
 }
 
 runTests();
