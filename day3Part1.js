@@ -5,7 +5,6 @@ function readInput(fileName) {
   try {
     const data = fs.readFileSync(fileName, 'UTF-8');
     const lines = data.split(/\r?\n/);
-
     lines.forEach((line) => {
       console.log(line);
       inputArray.push(line);
@@ -44,13 +43,9 @@ function doThing(fileName) {
   }
 
   let gamma = gammaArray.join('');
-  console.log('gamma', gamma);
   let gammaDecimal = parseInt(gamma, 2);
   let epsilon = epsilonArray.join('');
-  console.log('epsilon', epsilon);
   let epsilonDecimal = parseInt(epsilon, 2);
-
-  console.log(gammaDecimal, epsilonDecimal);
   const answer = gammaDecimal * epsilonDecimal;
   console.log(answer);
   return answer;
@@ -59,7 +54,6 @@ function doThing(fileName) {
 function run() {
   doThing('testInput5.txt');
   // 198
-
   doThing('day3Input.txt');
   // 738234
 }
