@@ -20,25 +20,15 @@ function readInput(fileName) {
     return data;
 }
 
-const quantities = {9:0, 8:0, 7:0, 6:0, 5:0, 4:0, 3:0, 2:0, 1:0, 0:0};
 function convertArrayToObject(fileName) {
+    const quantities = {9:0, 8:0, 7:0, 6:0, 5:0, 4:0, 3:0, 2:0, 1:0, 0:0};
     const lanternfishArray = readInput(fileName);
     lanternfishArray.forEach(element => {
         quantities[element]++;
     });
     console.log(quantities);
+    return quantities;
 }
-
-// function getArrayAsString(fileName) {
-//     console.log(typeof readInput(fileName).join(''));
-//     return readInput(fileName).join('');
-// }
-
-// function replaceCharacter(string, index, newCharacter) {
-//     let stringArray = string.split('');
-//     stringArray[index] = newCharacter;
-//     return stringArray.join('');
-// }
 
 function incrementOneDay(inputArrayObject) {
     let lanternfishArrayObject = inputArrayObject;
@@ -48,6 +38,7 @@ function incrementOneDay(inputArrayObject) {
             // lanternfishArrayObject['9'] = 'test';
             let value = lanternfishArrayObject['0'];
             lanternfishArrayObject['9'] = value;
+            lanternfishArrayObject['7']+=value; // since it immediately decrements
         } else {
             lanternfishArrayObject[(i-1).toString()] = lanternfishArrayObject[i.toString()];
         }
@@ -58,16 +49,17 @@ function incrementOneDay(inputArrayObject) {
 }
 
 function incrementDays(fileName, numberOfDays) {
-    let resultArrayString = getArrayAsString(fileName);
+    let resultArrayObject = convertArrayToObject(fileName);
     for (let i = 0; i < numberOfDays; i++) {
-        resultArrayString = incrementOneDay(resultArrayString);
+        resultArrayObject = incrementOneDay(resultArrayObject);
     }
-    console.log(resultArrayString);
-    return resultArrayString;
+    console.log(resultArrayObject);
+    return resultArrayObject;
 }
 
 function countLanternfish(fileName, numberOfDays) {
-    return incrementDays(fileName, numberOfDays).length;
+    const object = incrementDays(fileName, numberOfDays);
+    return Object.values(object).reduce((a, b) => a + b);
 }
 
 function run(fileName) {
@@ -117,9 +109,12 @@ function run(fileName) {
     // console.log(getArrayAsString('day6TestInput.txt')); // 34312
     // console.log(incrementOneDay('23201')); // 121608
     // console.log(incrementDays('day6TestInput.txt', 18)); // 60645601126011122334678888
+    // console.log(countLanternfish('day6TestInput.txt', 2)); // 6
+    
     // console.log(countLanternfish('day6TestInput.txt', 18)); // 26
-    // console.log(countLanternfish('day6TestInput.txt', 256));
-    // console.log(countLanternfish('day6Input.txt', 80));
+    // console.log(countLanternfish('day6TestInput.txt', 80)); // 5934
+    // console.log(countLanternfish('day6TestInput.txt', 256)); // 26984457539
+    console.log(countLanternfish('day6Input.txt', 256)); // 1721148811504
 }
 
 run();

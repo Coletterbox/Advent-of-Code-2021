@@ -63,6 +63,8 @@ function run(fileName) {
     console.log(countLanternfish('day6TestInput.txt', 18)); // 26
     console.log(countLanternfish('day6TestInput.txt', 80)); // 5934
     console.log(countLanternfish('day6Input.txt', 80)); // 383160
+
+    console.log(countLanternfish('day6TestInput.txt', 2)); // 6
 }
 
 run();
