@@ -20,7 +20,7 @@ function readInput(fileName) {
     return data;
 }
 
-const quantities = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0};
+const quantities = {9:0, 8:0, 7:0, 6:0, 5:0, 4:0, 3:0, 2:0, 1:0, 0:0};
 function convertArrayToObject(fileName) {
     const lanternfishArray = readInput(fileName);
     lanternfishArray.forEach(element => {
@@ -40,18 +40,21 @@ function convertArrayToObject(fileName) {
 //     return stringArray.join('');
 // }
 
-function incrementOneDay(inputArrayString) {
-    // let lanternfishArrayString = inputArrayString;
-    // for (let i = 0; i < lanternfishArrayString.length; i++) {
-    //     if (lanternfishArrayString.charAt(i) === '0') {
-    //         lanternfishArrayString = replaceCharacter(lanternfishArrayString, i, '6');
-    //         // taking into account that it will be decremented
-    //         lanternfishArrayString = lanternfishArrayString.concat('9');
-    //     } else {
-    //         lanternfishArrayString = replaceCharacter(lanternfishArrayString, i, (parseInt(lanternfishArrayString.charAt(i)) - 1).toString());
-    //     }
-    // }
-    // return lanternfishArrayString;
+function incrementOneDay(inputArrayObject) {
+    let lanternfishArrayObject = inputArrayObject;
+    // for (let i = 9; i >= 0; i--) { // so it specifically goes downwards // nvm we don't want that
+    for (let i = 0; i <= 10; i++) {
+        if (i === 0) {
+            // lanternfishArrayObject['9'] = 'test';
+            let value = lanternfishArrayObject['0'];
+            lanternfishArrayObject['9'] = value;
+        } else {
+            lanternfishArrayObject[(i-1).toString()] = lanternfishArrayObject[i.toString()];
+        }
+    }
+    lanternfishArrayObject['9'] = 0;
+    console.log(lanternfishArrayObject);
+    return lanternfishArrayObject;
 }
 
 function incrementDays(fileName, numberOfDays) {
@@ -70,6 +73,45 @@ function countLanternfish(fileName, numberOfDays) {
 function run(fileName) {
     // console.log(readInput('day6TestInput.txt'));
     console.log(convertArrayToObject('day6TestInput.txt'));
+    let inputArrayObject = {
+        '0': 0,
+        '1': 1,
+        '2': 1,
+        '3': 2,
+        '4': 1,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0
+    };
+    incrementOneDay(inputArrayObject);
+    let inputArrayObject2 = {
+        '0': 1,
+        '1': 1,
+        '2': 2,
+        '3': 1,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0
+    };
+    incrementOneDay(inputArrayObject2);
+    let inputArrayObject3 = {
+        '0': 1,
+        '1': 2,
+        '2': 1,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 1,
+        '9': 0
+    }
+    incrementOneDay(inputArrayObject3);
 
     // console.log(incrementOneDay('34312')); // 23201
     // console.log(getArrayAsString('day6TestInput.txt')); // 34312
