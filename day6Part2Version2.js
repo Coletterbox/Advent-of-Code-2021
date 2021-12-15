@@ -24,25 +24,7 @@ const quantities = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0};
 function convertArrayToObject(fileName) {
     const lanternfishArray = readInput(fileName);
     lanternfishArray.forEach(element => {
-        console.log(typeof element);
-        // element = parseInt(element);
-        // for quantities, increment where the key = element
-        for (let [days, quantity] of Object.entries(quantities)) {
-            console.log(typeof days);
-            console.log(days, element.toString());
-            if (days === element.toString()) {
-                console.log('yes');
-                console.log(quantity);
-                console.log(typeof quantity);
-                // quantity = 'test';
-                // quantity++;
-                // // idk why this doesn't work
-                // console.log('updated quantity:', quantity);
-                // console.log('updated quantities:', quantities);
-                // never mind; I get why it wouldn't work
-                quantities[element]++;
-            }
-        }
+        quantities[element]++;
     });
     console.log(quantities);
 }
