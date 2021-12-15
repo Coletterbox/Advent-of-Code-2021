@@ -31,7 +31,7 @@ function readInput(fileName) {
 }
 
 function count1748(fileName) {
-    const resultArray = readInput('day8TestInput.txt');
+    const resultArray = readInput(fileName);
     let total = 0;
 
     for (let i = 0; i < resultArray.length; i++) {
@@ -50,6 +50,7 @@ let assert = require('assert');
 function runTests() {
     console.log(readInput('day8TestInput.txt'));
     assert.equal(26, count1748('day8TestInput.txt'));
+    assert.equal(397, count1748('day8Input.txt'));
 }
 
 runTests();
