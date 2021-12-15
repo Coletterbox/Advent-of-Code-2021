@@ -73,7 +73,7 @@ function runTests() {
     assert.equal(168, iterateThroughRange('day7TestInput.txt'));
     // iterateThroughRange('day7Input.txt');
     // console.log(getRange('day7Input.txt'));
-    // assert.equal(93214037, iterateThroughRange('day7Input.txt'));
+    assert.equal(93214037, iterateThroughRange('day7Input.txt'));
 }
 
 runTests();
