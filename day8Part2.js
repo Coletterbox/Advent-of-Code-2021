@@ -32,8 +32,8 @@ function figureOutNumbers(fileName) {
     const digitsArray2 = [];
 
     for (let i = 0; i < resultArray.length; i++) {
+        console.log('new line');
         const numbers = resultArray[i][0].split(' ');
-        // const digits = ['0', '0', '0', '0'];
         let lettersIn1 = '';
         let lettersIn4 = '';
         let lettersIn7 = '';
@@ -56,7 +56,7 @@ function figureOutNumbers(fileName) {
                     break;
             }
         }
-        // console.log('1, 4, 7 and 8:', lettersIn1, lettersIn4, lettersIn7, lettersIn8);
+        console.log('1, 4, 7 and 8:', lettersIn1, lettersIn4, lettersIn7, lettersIn8);
         // 1, 4, 7 and 8 have been figured out at this point
         // 3 would have length of 5 and contain the two letters in 1
         // 6 has length of 6 and does not include the letters in 1
@@ -65,21 +65,43 @@ function figureOutNumbers(fileName) {
         for (let i = 0; i < numbers.length; i++) {
             let sortedLetters = numbers[i].split('').sort().join('');
             if (numbers[i].length === 5 && sortedLetters.includes(lettersIn1.charAt(0)) && sortedLetters.includes(lettersIn1.charAt(1))) {
-                // console.log('1:', sortedLetters, lettersIn1)
                 lettersIn3 = sortedLetters;
             }
             if (numbers[i].length === 6 && !sortedLetters.includes(lettersIn1)) {
                 lettersIn6 = sortedLetters;
             }
         }
-        // console.log()
         console.log('3 and 6:', lettersIn3, lettersIn6);
         // 2 would have a length of 5; the letter that's in 6 but not in 5 would be in 2
-        // the other with a length of 5 would be 5
+        // the other with a length of 5 would be 5 (still need to include conditions since 3 is established in a separate loop)
         // (all letters in 5 are in 6)
+        let lettersIn2 = '';
+        let lettersIn5 = '';
+        // commenting this out because I just realised we don't have 5 at this point
+        // let letterIn6NotIn5 = '';
+        // for (let i = 0; i < lettersIn6.length; i++) {
+        //     if (!lettersIn5.includes(lettersIn6.charAt(i))) {
+        //         letterIn6NotIn5 = lettersIn6.charAt(i);
+        //     }
+        // }
+        // console.log('letterIn6NotIn5', letterIn6NotIn5);
+        // for (let i = 0; i < numbers.length; i++) {
+        //     let sortedLetters = numbers[i].split('').sort().join('');
+        //     if (numbers[i].length === 5 && numbers[i].includes(letterIn6NotIn5) && !(sortedLetters.includes(lettersIn1.charAt(0)) && sortedLetters.includes(lettersIn1.charAt(1)))) {
+        //         lettersIn2 = sortedLetters;
+        //     } else if (numbers[i].length === 5 && !(sortedLetters.includes(lettersIn1.charAt(0)) && sortedLetters.includes(lettersIn1.charAt(1)))) {
+        //         lettersIn5 = sortedLetters;
+        //     } else {
+        //         console.log(sortedLetters);
+        //     }
+        // }
+        // console.log('2:', lettersIn2, '5:', lettersIn5);
         // 9 would have length of 6 and contain the two letters in 1 (so would 0)
         // 9 has all the letters in 3
         // 6 would be the other with the length of 6
+        let lettersIn0 = '';
+        let lettersIn9 = '';
+        
     }
 }
 
