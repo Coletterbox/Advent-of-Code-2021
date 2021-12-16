@@ -136,7 +136,7 @@ function figureOutNumbers(fileName) {
         console.log('0:', lettersIn0, '9:', lettersIn9);
         for (let i = 0; i < numbers.length; i++) {
             let sortedLetters = numbers[i].split('').sort().join('');
-            if (sortedLetters.length === 6 && !lettersIn0.includes(sortedLetters)) {
+            if (sortedLetters.length === 6 && !lettersIn0.includes(sortedLetters) && !lettersIn6.includes(sortedLetters)) {
                 lettersIn9 = sortedLetters;
             }
             if (sortedLetters.length === 5 && !lettersIn2.includes(sortedLetters) && !lettersIn3.includes(sortedLetters)) {
@@ -158,7 +158,8 @@ let assert = require('assert');
 
 function runTests() {
     // console.log(readInput('day8TestInput.txt'));
-    figureOutNumbers('day8TestInput.txt');
+    // figureOutNumbers('day8TestInput.txt');
+    figureOutNumbers('day8TestInput2.txt');
     // assert.equal(26, count1748('day8TestInput.txt'));
     // assert.equal(397, count1748('day8Input.txt'));
 }
