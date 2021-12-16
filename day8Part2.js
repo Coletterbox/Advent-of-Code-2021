@@ -28,8 +28,7 @@ function readInput(fileName) {
 
 function figureOutNumbers(fileName) {
     const resultArray = readInput(fileName);
-    const digitsArray = [];
-    const digitsArray2 = [];
+    let digitsArrayArray = [];
 
     for (let i = 0; i < resultArray.length; i++) {
         console.log('new line');
@@ -74,9 +73,8 @@ function figureOutNumbers(fileName) {
         console.log('3 and 6:', lettersIn3, lettersIn6);
         // 2 would have a length of 5; the letter that's in 6 but not in 5 would be in 2
         // the other with a length of 5 would be 5 (still need to include conditions since 3 is established in a separate loop)
-        // (all letters in 5 are in 6)
-        let lettersIn2 = '';
-        let lettersIn5 = '';
+        // let lettersIn2 = '';
+        // let lettersIn5 = '';
         // commenting this out because I just realised we don't have 5 at this point
         // let letterIn6NotIn5 = '';
         // for (let i = 0; i < lettersIn6.length; i++) {
@@ -99,10 +97,61 @@ function figureOutNumbers(fileName) {
         // 9 would have length of 6 and contain the two letters in 1 (so would 0)
         // 9 has all the letters in 3
         // 6 would be the other with the length of 6
+        // ...
+        // 2 and 5 have length of 5 but do not contain both letters in 1
+        // all letters in 5 are in 6
+        let lettersIn2 = '';
+        let lettersIn5 = '';
+        for (let i = 0; i < numbers.length; i++) {
+            let sortedLetters = numbers[i].split('').sort().join('');
+            if (numbers[i].length === 5 && !(sortedLetters.includes(lettersIn1.charAt(0)) && sortedLetters.includes(lettersIn1.charAt(1)))) {
+                // narrow down between 2 and 5
+                for (let i = 0; i < sortedLetters.length; i++) {
+                    if (!lettersIn6.includes(sortedLetters.charAt(i))) {
+                        lettersIn2 = sortedLetters;
+                    }
+                    // } else {
+                    //     lettersIn5 = sortedLetters;
+                    // }
+                }
+            }
+        }
+        console.log('2:', lettersIn2, '5:', lettersIn5);
         let lettersIn0 = '';
         let lettersIn9 = '';
-        
+        for (let i = 0; i < numbers.length; i++) {
+            let sortedLetters = numbers[i].split('').sort().join('');
+            if (numbers[i].length === 6) {
+                for (let i = 0; i < lettersIn3.length; i++) {
+                    console.log(lettersIn3.charAt(i));
+                    if (!sortedLetters.includes(lettersIn3.charAt(i))) {
+                        lettersIn0 = sortedLetters;
+                    }
+                    // } else {
+                    //     lettersIn9 = sortedLetters;
+                    // }
+                }
+            }
+        }
+        console.log('0:', lettersIn0, '9:', lettersIn9);
+        for (let i = 0; i < numbers.length; i++) {
+            let sortedLetters = numbers[i].split('').sort().join('');
+            if (sortedLetters.length === 6 && !lettersIn0.includes(sortedLetters)) {
+                lettersIn9 = sortedLetters;
+            }
+            if (sortedLetters.length === 5 && !lettersIn2.includes(sortedLetters) && !lettersIn3.includes(sortedLetters)) {
+                lettersIn5 = sortedLetters;
+            }
+        }
+        console.log('5:', lettersIn5, '9:', lettersIn9);
+
+        let digitsArray = [lettersIn0, lettersIn1, lettersIn2, lettersIn3, lettersIn4, lettersIn5, lettersIn6, lettersIn7, lettersIn8, lettersIn9];
+        console.log(digitsArray);
+        digitsArrayArray.push(digitsArray);
     }
+
+    console.log(digitsArrayArray);
+    return digitsArrayArray;
 }
 
 let assert = require('assert');
