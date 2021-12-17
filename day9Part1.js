@@ -102,7 +102,8 @@ function run() {
     checkArray('day9TestInput.txt');
     // checkArray('day9TestInput2.txt');
     // checkArray('day9TestInput3.txt');
-    calculateRiskLevel('day9TestInput.txt');
+    calculateRiskLevel('day9TestInput.txt'); // 15
+    calculateRiskLevel('day9Input.txt'); // 506
 }
 
 run();
