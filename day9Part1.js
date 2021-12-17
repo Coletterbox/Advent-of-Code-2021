@@ -69,13 +69,28 @@ function checkArray(fileName) {
                 lowPoints.push(inputArray[i][inputArray[i].length-1]);
             }
     }
+    if (inputArray[0][0] < inputArray[0][1] && inputArray[0][0] < inputArray[1][0]) {
+        lowPoints.push(inputArray[0][0]);
+    }
+    if (inputArray[0][inputArray[0].length-1] < inputArray[0][inputArray[0].length-2] && inputArray[0][inputArray[0].length-1] < inputArray[1][inputArray[0].length-1]) {
+        lowPoints.push(inputArray[0][inputArray[0].length-1]);
+    }
+    if (inputArray[inputArray.length-1][0] < inputArray[inputArray.length-2][0] && inputArray[inputArray.length-1][0] < inputArray[inputArray.length-1][1]) {
+        lowPoints.push(inputArray[inputArray.length-1][0]);
+    }
+    // switching back to just using length of inputArray[0] since the alternative actually isn't more readable
+    // check bottom right corner
+    if (inputArray[inputArray.length-1][inputArray[0].length-1] < inputArray[inputArray.length-1][inputArray[0].length-2] && inputArray[inputArray.length-1][inputArray[0].length-1] < inputArray[inputArray.length-2][inputArray[0].length-1]) {
+        lowPoints.push(inputArray[inputArray.length-1][inputArray[0].length-1]);
+    }
     console.log(lowPoints);
 }
 
 function run() {
     // readInput('day9TestInput.txt');
-    checkArray('day9TestInput.txt');
-    checkArray('day9TestInput2.txt');
+    // checkArray('day9TestInput.txt');
+    // checkArray('day9TestInput2.txt');
+    checkArray('day9TestInput3.txt');
 }
 
 run();
