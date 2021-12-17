@@ -124,7 +124,7 @@ function figureOutNumbers(fileName) {
             if (numbers[i].length === 6) {
                 for (let i = 0; i < lettersIn3.length; i++) {
                     console.log(lettersIn3.charAt(i));
-                    if (!sortedLetters.includes(lettersIn3.charAt(i))) {
+                    if (!sortedLetters.includes(lettersIn3.charAt(i)) && !sortedLetters.includes(lettersIn6)) {
                         lettersIn0 = sortedLetters;
                     }
                     // } else {
@@ -190,11 +190,12 @@ let assert = require('assert');
 
 function runTests() {
     // console.log(readInput('day8TestInput.txt'));
-    figureOutNumbers('day8TestInput.txt');
+    // figureOutNumbers('day8TestInput.txt');
     // figureOutNumbers('day8TestInput2.txt');
     // assert.equal(26, count1748('day8TestInput.txt'));
     // assert.equal(397, count1748('day8Input.txt'));
     // getFourDigits('day8TestInput.txt');
+    getFourDigits('day8TestInput3.txt');
 }
 
 runTests();
