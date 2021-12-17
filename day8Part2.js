@@ -110,9 +110,6 @@ function figureOutNumbers(fileName) {
                     if (!lettersIn6.includes(sortedLetters.charAt(i))) {
                         lettersIn2 = sortedLetters;
                     }
-                    // } else {
-                    //     lettersIn5 = sortedLetters;
-                    // }
                 }
             }
         }
@@ -127,9 +124,6 @@ function figureOutNumbers(fileName) {
                     if (!sortedLetters.includes(lettersIn3.charAt(i)) && !sortedLetters.includes(lettersIn6)) {
                         lettersIn0 = sortedLetters;
                     }
-                    // } else {
-                    //     lettersIn9 = sortedLetters;
-                    // }
                 }
             }
         }
@@ -164,15 +158,7 @@ function getFourDigits(fileName) {
     for (let i = 0; i < resultArray.length; i++) {
         let digits = '';
         const fourDigits = resultArray[i][1].split(' ');
-        // console.log('fourDigits', fourDigits);
-    //     const digitsArray = fourDigits.split(' ');
-    //     for (let j = 0; j < digitsArray.length; j++) {
-    //         let sortedDigits = digitsArray[j].sort();
-    //         // for (let k = 0; k < digitsArrayArray; k++) {
-    //         //     if (digitsArrayArray[k])
-    //         // }
-    //         // if (digitsArrayArray[i])
-    //      }
+
         for (let j = 0; j < fourDigits.length; j++) {
             // digitsArrayArray[i] corresponds to resultArray[i]
             for (let k = 0; k < digitsArrayArray[i].length; k++) {
@@ -212,21 +198,3 @@ function runTests() {
 }
 
 runTests();
-
-// [
-//     'abdefg',  'be',
-//     'abcdf',   'bcdef',
-//     'bceg',    'cdefg',
-//     'abdefg',  'bde',
-//     'abcdefg', 'acdefg'
-// ] // first one - 0 and 6 are the same; 9 is incorrect
-// 834 // should be - fdgacbe cefdb cefbgd gcbe: 8394
-// 6781
-// 1197
-// 93001
-// 4873
-// 8418
-// 4548
-// 1625
-// 8717
-// 4315
