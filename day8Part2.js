@@ -66,7 +66,7 @@ function figureOutNumbers(fileName) {
             if (numbers[i].length === 5 && sortedLetters.includes(lettersIn1.charAt(0)) && sortedLetters.includes(lettersIn1.charAt(1))) {
                 lettersIn3 = sortedLetters;
             }
-            if (numbers[i].length === 6 && !sortedLetters.includes(lettersIn1)) {
+            if (numbers[i].length === 6 && !(sortedLetters.includes(lettersIn1.charAt(0)) && sortedLetters.includes(lettersIn1.charAt(1)))) {
                 lettersIn6 = sortedLetters;
             }
         }
@@ -190,11 +190,29 @@ let assert = require('assert');
 
 function runTests() {
     // console.log(readInput('day8TestInput.txt'));
-    // figureOutNumbers('day8TestInput.txt');
+    figureOutNumbers('day8TestInput.txt');
     // figureOutNumbers('day8TestInput2.txt');
     // assert.equal(26, count1748('day8TestInput.txt'));
     // assert.equal(397, count1748('day8Input.txt'));
-    getFourDigits('day8TestInput.txt');
+    // getFourDigits('day8TestInput.txt');
 }
 
 runTests();
+
+// [
+//     'abdefg',  'be',
+//     'abcdf',   'bcdef',
+//     'bceg',    'cdefg',
+//     'abdefg',  'bde',
+//     'abcdefg', 'acdefg'
+// ] // first one - 0 and 6 are the same; 9 is incorrect
+// 834 // should be - fdgacbe cefdb cefbgd gcbe: 8394
+// 6781
+// 1197
+// 93001
+// 4873
+// 8418
+// 4548
+// 1625
+// 8717
+// 4315
