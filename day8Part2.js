@@ -154,14 +154,47 @@ function figureOutNumbers(fileName) {
     return digitsArrayArray;
 }
 
+function getFourDigits(fileName) {
+    let digitsArrayArray = figureOutNumbers(fileName);
+    const resultArray = readInput(fileName);
+    console.log('digitsArrayArray', digitsArrayArray);
+    console.log('resultArray', resultArray);
+
+    for (let i = 0; i < resultArray.length; i++) {
+        let digits = '';
+        const fourDigits = resultArray[i][1].split(' ');
+        // console.log('fourDigits', fourDigits);
+    //     const digitsArray = fourDigits.split(' ');
+    //     for (let j = 0; j < digitsArray.length; j++) {
+    //         let sortedDigits = digitsArray[j].sort();
+    //         // for (let k = 0; k < digitsArrayArray; k++) {
+    //         //     if (digitsArrayArray[k])
+    //         // }
+    //         // if (digitsArrayArray[i])
+    //      }
+        for (let j = 0; j < fourDigits.length; j++) {
+            // digitsArrayArray[i] corresponds to resultArray[i]
+            for (let k = 0; k < digitsArrayArray[i].length; k++) {
+                let sortedDigit = fourDigits[j].split('').sort().join('');
+                // console.log('...', sortedDigit, digitsArrayArray[i][k]);
+                if (sortedDigit === digitsArrayArray[i][k]) {
+                    digits+=digitsArrayArray[i].indexOf(sortedDigit);
+                }
+            }
+        }
+        console.log(digits);
+    }
+}
+
 let assert = require('assert');
 
 function runTests() {
     // console.log(readInput('day8TestInput.txt'));
     // figureOutNumbers('day8TestInput.txt');
-    figureOutNumbers('day8TestInput2.txt');
+    // figureOutNumbers('day8TestInput2.txt');
     // assert.equal(26, count1748('day8TestInput.txt'));
     // assert.equal(397, count1748('day8Input.txt'));
+    getFourDigits('day8TestInput.txt');
 }
 
 runTests();
