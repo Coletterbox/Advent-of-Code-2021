@@ -84,13 +84,25 @@ function checkArray(fileName) {
         lowPoints.push(inputArray[inputArray.length-1][inputArray[0].length-1]);
     }
     console.log(lowPoints);
+    return lowPoints;
+}
+
+function calculateRiskLevel(fileName) {
+    const lowPoints = checkArray(fileName);
+    let riskLevel = 0;
+    for (let i = 0; i < lowPoints.length; i++) {
+        riskLevel+=(parseInt(lowPoints[i])+1);
+    }
+    console.log(riskLevel);
+    return riskLevel;
 }
 
 function run() {
     // readInput('day9TestInput.txt');
-    // checkArray('day9TestInput.txt');
+    checkArray('day9TestInput.txt');
     // checkArray('day9TestInput2.txt');
-    checkArray('day9TestInput3.txt');
+    // checkArray('day9TestInput3.txt');
+    calculateRiskLevel('day9TestInput.txt');
 }
 
 run();
