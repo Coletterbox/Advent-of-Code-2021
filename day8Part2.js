@@ -159,6 +159,7 @@ function getFourDigits(fileName) {
     const resultArray = readInput(fileName);
     console.log('digitsArrayArray', digitsArrayArray);
     console.log('resultArray', resultArray);
+    const outputArray = [];
 
     for (let i = 0; i < resultArray.length; i++) {
         let digits = '';
@@ -183,7 +184,17 @@ function getFourDigits(fileName) {
             }
         }
         console.log(digits);
+        outputArray.push(parseInt(digits));
     }
+    console.log(outputArray);
+    return outputArray;
+}
+
+function addNumbers(fileName) {
+    const numbersArray = getFourDigits(fileName);
+    return numbersArray.reduce(function(a, b) {
+        return a + b;
+    }, 0);
 }
 
 let assert = require('assert');
@@ -195,7 +206,9 @@ function runTests() {
     // assert.equal(26, count1748('day8TestInput.txt'));
     // assert.equal(397, count1748('day8Input.txt'));
     // getFourDigits('day8TestInput.txt');
-    getFourDigits('day8TestInput3.txt');
+    // getFourDigits('day8TestInput3.txt');
+    // console.log(addNumbers('day8TestInput.txt')); // 61229
+    console.log(addNumbers('day8Input.txt')); // 1027422
 }
 
 runTests();
