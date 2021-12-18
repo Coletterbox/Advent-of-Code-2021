@@ -79,7 +79,6 @@ function checkArray(fileName) {
         lowPoints.push(inputArray[inputArray.length-1][0]);
     }
     // switching back to just using length of inputArray[0] since the alternative actually isn't more readable
-    // check bottom right corner
     if (inputArray[inputArray.length-1][inputArray[0].length-1] < inputArray[inputArray.length-1][inputArray[0].length-2] && inputArray[inputArray.length-1][inputArray[0].length-1] < inputArray[inputArray.length-2][inputArray[0].length-1]) {
         lowPoints.push(inputArray[inputArray.length-1][inputArray[0].length-1]);
     }
