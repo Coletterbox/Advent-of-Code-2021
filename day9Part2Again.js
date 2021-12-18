@@ -1,28 +1,16 @@
-// parse input
-// iterate through array
-    // starting where i and j are 1, and stopping where i is array.length-2 and j is array[i].length-2
-        // check 4 adjacent numbers
-    // do edges and corners
-    // alternatively, pad edges? idk what's cleaner
-    // or maybe just catch index out of bounds exception?
-// have separate function to calculate risk level
-// sum risk levels
-
-// part 2 - basins
-// go back to part 1 and log indexes of low points
-// have array of visited points
-// (call on low points) separate function to get adjacent points - if point < 9, log indexes and call same function
-
-// or just log adjacent points that are less than 9 and then remove doubles?
-// maybe write that function that pads the outsides with 9s so I don't have to read that horrible mess from part 1
-
-// ---
-// function to pad edges with 9s
-// function to log adjacent points that are less than 9
-// call this function on low points and aforementioned adjacent points
-// remove doubles
-// count
-// add to array of basin sizes
+// part 2 again
+// already have thing that gives array of low points
+// check function that gives adjacent points
+// rewrite or check function that checks that adjacent points are less than 9
+// rewrite or write (I've lost track) function that:
+    // initialises new array
+    // iterates through low points array 
+    // and calls function that give adjacent points (on each low point)
+    // and checks the adjacent points, adding them to the aforementioned array
+    // actually I think my code already did this, but it went on forever, and also potentially didn't add all the points to the same array
+    // (I think the basins don't go down again once they've gone up? so add an if statement for that, then it won't go on forever)
+    // depending on where the end point goes, check for doubles
+    // count basin sizes; get three largest etc.
 
 function readInput(fileName) {
     const fs = require('fs');
@@ -141,85 +129,85 @@ function findLowPointCoordinates(fileName) {
 //     }
 // }
 
-function getAdjacentCoordinates(point, fileName) {
-    console.log(point, '= point');
-    const inputArray = padEdges(fileName);
-    let adjacentCoordinates = [];
-    let coordinates = point.split(',');
-    let i = coordinates[0];
-    let j = coordinates[1];
-    console.log('i,j:', i, j);
-    if (i > '0') {
-        adjacentCoordinates.push(parseInt(i)-1 + ',' + j);
-    }
-    if (i < (inputArray.length-1).toString()) {
-        adjacentCoordinates.push(parseInt(i)+1 + ',' + j);
-    }
-    if (j > '0') {
-        console.log('...1');
-        adjacentCoordinates.push(i + ',' + (parseInt(j)-1).toString());
-    }
-    console.log(typeof j);
-    console.log(inputArray[0].length-1);
-    if (parseInt(j) < (inputArray[0].length-1)) {
-        console.log('...2');
-        adjacentCoordinates.push(i + ',' + (parseInt(j)+1).toString());
-    }
-    console.log(adjacentCoordinates);
-    return adjacentCoordinates;
-}
+// function getAdjacentCoordinates(point, fileName) {
+//     console.log(point, '= point');
+//     const inputArray = padEdges(fileName);
+//     let adjacentCoordinates = [];
+//     let coordinates = point.split(',');
+//     let i = coordinates[0];
+//     let j = coordinates[1];
+//     console.log('i,j:', i, j);
+//     if (i > '0') {
+//         adjacentCoordinates.push(parseInt(i)-1 + ',' + j);
+//     }
+//     if (i < (inputArray.length-1).toString()) {
+//         adjacentCoordinates.push(parseInt(i)+1 + ',' + j);
+//     }
+//     if (j > '0') {
+//         console.log('...1');
+//         adjacentCoordinates.push(i + ',' + (parseInt(j)-1).toString());
+//     }
+//     console.log(typeof j);
+//     console.log(inputArray[0].length-1);
+//     if (parseInt(j) < (inputArray[0].length-1)) {
+//         console.log('...2');
+//         adjacentCoordinates.push(i + ',' + (parseInt(j)+1).toString());
+//     }
+//     console.log(adjacentCoordinates);
+//     return adjacentCoordinates;
+// }
 
-function checkAdjacentPoints(point, fileName) {
-    let adjacentPoints = getAdjacentCoordinates(point, fileName);
-    console.log('adjacentPoints', adjacentPoints);
-    const inputArray = padEdges(fileName);
-    console.log(inputArray);
-    let adjacentBasinPoints = [];
-    // for (let point in adjacentPoints) {
-    //     console.log('point', point);
-    //     let coordinates = point.split(',');
-    //     let i = coordinates[0];
-    //     let j = coordinates[1];
-    //     console.log('i,j:', i, j);
-    //     if (parseInt(inputArray[i][j]) < 9) {
-    //         adjacentBasinPoints.push(i + ',' + j);
-    //     }
-    // }
-    for (let k = 0; k < adjacentPoints.length; k++) {
-        console.log(k);
-        console.log('adjacentPoints[k]', adjacentPoints[k]);
-        console.log(adjacentPoints[k].split(','));
-        let coordinates = adjacentPoints[k].split(',');
-        let i = coordinates[0];
-        let j = coordinates[1];
-        console.log('i,j:', i, j);
-        if (parseInt(inputArray[i][j]) < 9) {
-            adjacentBasinPoints.push(i + ',' + j);
-            console.log(adjacentBasinPoints);
-            return adjacentBasinPoints;
-        } // else {
-        //     console.log(adjacentBasinPoints);
-        //     return adjacentBasinPoints;
-        // }
-    }
-    console.log('adjacentBasinPoints', adjacentBasinPoints);
-    // for (let newPoint in adjacentBasinPoints) {
-    //     checkAdjacentPoints(newPoint, fileName);
-    // }
-    for (let k = 0; k < adjacentBasinPoints.length; k++) {
-        checkAdjacentPoints(adjacentBasinPoints[k], fileName);
-        // getAdjacentCoordinates(adjacentBasinPoints[k], fileName);
-    }
-}
+// function checkAdjacentPoints(point, fileName) {
+//     let adjacentPoints = getAdjacentCoordinates(point, fileName);
+//     console.log('adjacentPoints', adjacentPoints);
+//     const inputArray = padEdges(fileName);
+//     console.log(inputArray);
+//     let adjacentBasinPoints = [];
+//     // for (let point in adjacentPoints) {
+//     //     console.log('point', point);
+//     //     let coordinates = point.split(',');
+//     //     let i = coordinates[0];
+//     //     let j = coordinates[1];
+//     //     console.log('i,j:', i, j);
+//     //     if (parseInt(inputArray[i][j]) < 9) {
+//     //         adjacentBasinPoints.push(i + ',' + j);
+//     //     }
+//     // }
+//     for (let k = 0; k < adjacentPoints.length; k++) {
+//         console.log(k);
+//         console.log('adjacentPoints[k]', adjacentPoints[k]);
+//         console.log(adjacentPoints[k].split(','));
+//         let coordinates = adjacentPoints[k].split(',');
+//         let i = coordinates[0];
+//         let j = coordinates[1];
+//         console.log('i,j:', i, j);
+//         if (parseInt(inputArray[i][j]) < 9) {
+//             adjacentBasinPoints.push(i + ',' + j);
+//             console.log(adjacentBasinPoints);
+//             return adjacentBasinPoints;
+//         } // else {
+//         //     console.log(adjacentBasinPoints);
+//         //     return adjacentBasinPoints;
+//         // }
+//     }
+//     console.log('adjacentBasinPoints', adjacentBasinPoints);
+//     // for (let newPoint in adjacentBasinPoints) {
+//     //     checkAdjacentPoints(newPoint, fileName);
+//     // }
+//     for (let k = 0; k < adjacentBasinPoints.length; k++) {
+//         checkAdjacentPoints(adjacentBasinPoints[k], fileName);
+//         // getAdjacentCoordinates(adjacentBasinPoints[k], fileName);
+//     }
+// }
 
-function addBasinSizes(point, fileName) {
-    let lowPoints = findLowPointCoordinates(fileName);
-    let basinPoints = [];
-    for (let point in lowPoints) {
-        console.log(checkAdjacentPoints(point, fileName));
-    }
-    // ??
-}
+// function addBasinSizes(point, fileName) {
+//     let lowPoints = findLowPointCoordinates(fileName);
+//     let basinPoints = [];
+//     for (let point in lowPoints) {
+//         console.log(checkAdjacentPoints(point, fileName));
+//     }
+//     // ??
+// }
 
 function calculateRiskLevel(fileName) {
     const lowPoints = findLowPoints(fileName);
@@ -238,12 +226,12 @@ function run() {
     // findLowPoints('day9TestInput3.txt');
     // calculateRiskLevel('day9TestInput.txt'); // 15
     // calculateRiskLevel('day9Input.txt'); // 506
-    // console.log(padEdges('day9TestInput.txt'));
+    console.log(padEdges('day9TestInput.txt'));
     findLowPointCoordinates('day9TestInput.txt');
     // findAdjacentPoints('1,2', padEdges('day9TestInput.txt'), 'day9TestInput.txt');
-    getAdjacentCoordinates('1,2', 'day9TestInput.txt');
-    checkAdjacentPoints('1,2', 'day9TestInput.txt');
-    addBasinSizes('1,2', 'day9TestInput.txt');
+    // getAdjacentCoordinates('1,2', 'day9TestInput.txt');
+    // checkAdjacentPoints('1,2', 'day9TestInput.txt');
+    // addBasinSizes('1,2', 'day9TestInput.txt');
 }
 
 run();
