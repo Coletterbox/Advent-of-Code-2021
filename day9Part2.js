@@ -97,47 +97,75 @@ function findLowPointCoordinates(fileName) {
     return lowPointCoordinates;
 }
 
-// this won't actually stop searching at 9 - do later // or will it?
-function findAdjacentPoints(point, pointsArray, fileName) {
+// swap this out for two separate functions - find the adjacent points, then check if they're below 9 (this aims to do both)
+// // this won't actually stop searching at 9 - do later // or will it?
+// function findAdjacentPoints(point, pointsArray, fileName) {
+//     const inputArray = padEdges(fileName);
+//     let coordinates = point.split(',');
+//     let i = coordinates[0];
+//     let j = coordinates[1];
+//     let newPointsArray = pointsArray;
+//     if (i < 0 || i >= inputArray.length || j < 0 || j < inputArray[0].length) {
+//         console.log('1');
+//         console.log(newPointsArray);
+//         return;
+//     }
+//     if (inputArray[i][j] < '9') {
+//         console.log('2');
+//         newPointsArray.push(i + ',' + j);
+//     }
+//     if (inputArray[i-1][j] < '9') {
+//         console.log('3');
+//         // these rely on type coercion, so double check
+//         let point = (i-1).toString() + ',' + j;
+//         newPointsArray.push(point);
+//         findAdjacentPoints(point, newPointsArray);
+//     }
+//     if (inputArray[i+1][j] < '9') {
+//         console.log('4');
+//         let point = (i+1).toString() + ',' + j;
+//         newPointsArray.push(point);
+//         findAdjacentPoints(point, newPointsArray);
+//     }
+//     if (inputArray[i][j+1] < '9') {
+//         console.log('5');
+//         let point = i + ',' + (j+1).toString();
+//         newPointsArray.push(point);
+//         findAdjacentPoints(point, newPointsArray);
+//     }
+//     if (inputArray[i][j-1] < '9') {
+//         console.log('6');
+//         let point = i + ',' + (j-1).toString();
+//         newPointsArray.push(point);
+//         findAdjacentPoints(point, newPointsArray);
+//     }
+// }
+
+function getAdjacentCoordinates(point, fileName) {
     const inputArray = padEdges(fileName);
+    let adjacentCoordinates = [];
     let coordinates = point.split(',');
     let i = coordinates[0];
     let j = coordinates[1];
-    let newPointsArray = pointsArray;
-    if (i < 0 || i >= inputArray.length || j < 0 || j < inputArray[0].length) {
-        console.log('1');
-        console.log(newPointsArray);
-        return;
+    console.log('i,j:', i, j);
+    if (i > '0') {
+        adjacentCoordinates.push(parseInt(i)-1 + ',' + j);
     }
-    if (inputArray[i][j] < '9') {
-        console.log('2');
-        newPointsArray.push(i + ',' + j);
+    if (i < (inputArray.length-1).toString()) {
+        adjacentCoordinates.push(parseInt(i)+1 + ',' + j);
     }
-    if (inputArray[i-1][j] < '9') {
-        console.log('3');
-        // these rely on type coercion, so double check
-        let point = (i-1).toString() + ',' + j;
-        newPointsArray.push(point);
-        findAdjacentPoints(point, newPointsArray);
+    if (j > '0') {
+        console.log('...1');
+        adjacentCoordinates.push(i + ',' + (parseInt(j)-1).toString());
     }
-    if (inputArray[i+1][j] < '9') {
-        console.log('4');
-        let point = (i+1).toString() + ',' + j;
-        newPointsArray.push(point);
-        findAdjacentPoints(point, newPointsArray);
+    console.log(typeof j);
+    console.log(inputArray[0].length-1);
+    if (parseInt(j) < (inputArray[0].length-1)) {
+        console.log('...2');
+        adjacentCoordinates.push(i + ',' + (parseInt(j)+1).toString());
     }
-    if (inputArray[i][j+1] < '9') {
-        console.log('5');
-        let point = i + ',' + (j+1).toString();
-        newPointsArray.push(point);
-        findAdjacentPoints(point, newPointsArray);
-    }
-    if (inputArray[i][j-1] < '9') {
-        console.log('6');
-        let point = i + ',' + (j-1).toString();
-        newPointsArray.push(point);
-        findAdjacentPoints(point, newPointsArray);
-    }
+    console.log(adjacentCoordinates);
+    return adjacentCoordinates;
 }
 
 function calculateRiskLevel(fileName) {
@@ -159,7 +187,8 @@ function run() {
     // calculateRiskLevel('day9Input.txt'); // 506
     // console.log(padEdges('day9TestInput.txt'));
     findLowPointCoordinates('day9TestInput.txt');
-    findAdjacentPoints('1,2', padEdges('day9TestInput.txt'), 'day9TestInput.txt');
+    // findAdjacentPoints('1,2', padEdges('day9TestInput.txt'), 'day9TestInput.txt');
+    getAdjacentCoordinates('1,2', 'day9TestInput.txt');
 }
 
 run();
