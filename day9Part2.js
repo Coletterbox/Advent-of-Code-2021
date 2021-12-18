@@ -62,6 +62,7 @@ function padEdges(fileName) {
 function findLowPoints(fileName) {
     const inputArray = padEdges(fileName);
     let lowPoints = [];
+    let lowPointCoordinates = []; // y, then x
 
     for (let i = 1; i < inputArray.length-1; i++) {
         for (let j = 1; j < inputArray[i].length-1; j++) {
@@ -70,11 +71,66 @@ function findLowPoints(fileName) {
                 && inputArray[i][j] < inputArray[i][j-1]
                 && inputArray[i][j] < inputArray[i][j+1]) {
                     lowPoints.push(inputArray[i][j]);
+                    lowPointCoordinates.push(i+j);
                 }
         }
     }
     console.log(lowPoints);
     return lowPoints;
+}
+
+function findLowPointCoordinates(fileName) {
+    const inputArray = padEdges(fileName);
+    let lowPointCoordinates = []; // y, then x // relative to padded array
+
+    for (let i = 1; i < inputArray.length-1; i++) {
+        for (let j = 1; j < inputArray[i].length-1; j++) {
+            if (inputArray[i][j] < inputArray[i-1][j]
+                && inputArray[i][j] < inputArray[i+1][j]
+                && inputArray[i][j] < inputArray[i][j-1]
+                && inputArray[i][j] < inputArray[i][j+1]) {
+                    lowPointCoordinates.push(i + ',' + j);
+                }
+        }
+    }
+    console.log(lowPointCoordinates);
+    return lowPointCoordinates;
+}
+
+// this won't actually stop searching at 9 - do later
+function findAdjacentPoints(point, pointsArray) {
+    const inputArray = padEdges(fileName);
+    let coordinates = point.split(',');
+    let i = coordinates[0];
+    let j = coordinates[1];
+    let newPointsArray = pointsArray;
+    if (i < 0 || i >= inputArray.length || j < 0 || j < inputArray[0].length) {
+        return;
+    }
+    if (inputArray[i][j] < 9) {
+        newPointsArray.push(i + ',' + j);
+    }
+    if (inputArray[i-1][j] < 9) {
+        // these rely on type coercion, so double check
+        let point = (i-1).toString() + ',' + j;
+        newPointsArray.push(point);
+        findAdjacentPoints(point, newPointsArray);
+    }
+    if (inputArray[i+1][j] < 9) {
+        let point = (i+1).toString() + ',' + j;
+        newPointsArray.push(point);
+        findAdjacentPoints(point, newPointsArray);
+    }
+    if (inputArray[i][j+1] < 9) {
+        let point = i + ',' + (j+1).toString();
+        newPointsArray.push(point);
+        findAdjacentPoints(point, newPointsArray);
+    }
+    if (inputArray[i][j-1] < 9) {
+        let point = i + ',' + (j-1).toString();
+        newPointsArray.push(point);
+        findAdjacentPoints(point, newPointsArray);
+    }
 }
 
 function calculateRiskLevel(fileName) {
@@ -89,12 +145,13 @@ function calculateRiskLevel(fileName) {
 
 function run() {
     // readInput('day9TestInput.txt');
-    findLowPoints('day9TestInput.txt');
+    // findLowPoints('day9TestInput.txt');
     // findLowPoints('day9TestInput2.txt');
     // findLowPoints('day9TestInput3.txt');
     // calculateRiskLevel('day9TestInput.txt'); // 15
     // calculateRiskLevel('day9Input.txt'); // 506
     // console.log(padEdges('day9TestInput.txt'));
+    findLowPointCoordinates('day9TestInput.txt');
 }
 
 run();
