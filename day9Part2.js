@@ -97,36 +97,43 @@ function findLowPointCoordinates(fileName) {
     return lowPointCoordinates;
 }
 
-// this won't actually stop searching at 9 - do later
-function findAdjacentPoints(point, pointsArray) {
+// this won't actually stop searching at 9 - do later // or will it?
+function findAdjacentPoints(point, pointsArray, fileName) {
     const inputArray = padEdges(fileName);
     let coordinates = point.split(',');
     let i = coordinates[0];
     let j = coordinates[1];
     let newPointsArray = pointsArray;
     if (i < 0 || i >= inputArray.length || j < 0 || j < inputArray[0].length) {
+        console.log('1');
+        console.log(newPointsArray);
         return;
     }
-    if (inputArray[i][j] < 9) {
+    if (inputArray[i][j] < '9') {
+        console.log('2');
         newPointsArray.push(i + ',' + j);
     }
-    if (inputArray[i-1][j] < 9) {
+    if (inputArray[i-1][j] < '9') {
+        console.log('3');
         // these rely on type coercion, so double check
         let point = (i-1).toString() + ',' + j;
         newPointsArray.push(point);
         findAdjacentPoints(point, newPointsArray);
     }
-    if (inputArray[i+1][j] < 9) {
+    if (inputArray[i+1][j] < '9') {
+        console.log('4');
         let point = (i+1).toString() + ',' + j;
         newPointsArray.push(point);
         findAdjacentPoints(point, newPointsArray);
     }
-    if (inputArray[i][j+1] < 9) {
+    if (inputArray[i][j+1] < '9') {
+        console.log('5');
         let point = i + ',' + (j+1).toString();
         newPointsArray.push(point);
         findAdjacentPoints(point, newPointsArray);
     }
-    if (inputArray[i][j-1] < 9) {
+    if (inputArray[i][j-1] < '9') {
+        console.log('6');
         let point = i + ',' + (j-1).toString();
         newPointsArray.push(point);
         findAdjacentPoints(point, newPointsArray);
@@ -152,6 +159,7 @@ function run() {
     // calculateRiskLevel('day9Input.txt'); // 506
     // console.log(padEdges('day9TestInput.txt'));
     findLowPointCoordinates('day9TestInput.txt');
+    findAdjacentPoints('1,2', padEdges('day9TestInput.txt'), 'day9TestInput.txt');
 }
 
 run();
