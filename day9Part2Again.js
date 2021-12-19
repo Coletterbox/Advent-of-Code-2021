@@ -69,6 +69,7 @@ function findLowPoints(fileName) {
 
 function findLowPointCoordinates(fileName) {
     const inputArray = padEdges(fileName);
+    console.log(inputArray);
     let lowPointCoordinates = []; // y, then x // relative to padded array
 
     for (let i = 1; i < inputArray.length-1; i++) {
@@ -157,6 +158,55 @@ function getAdjacentCoordinates(point, fileName) {
     return adjacentCoordinates;
 }
 
+// to calculate basin size (run this on low points array):
+// start at low point
+// count++
+// get adjacent points
+// if adjacent point is higher but less than 9, count++
+
+// takes one set of coordinates
+// basin size should start at 1
+function countBasinSize(lowPointCoordinates, fileName, basinSize, visitedPoints) {
+    let visitedPointsArray = visitedPoints;
+    console.log(visitedPointsArray);
+    let currentCoordinates = lowPointCoordinates.split(',');
+    // let lowPointCoordinatesArray = findLowPointCoordinates(fileName); // I already don't remember why I typed this but I'll put it back if there was a reason
+    let adjacentCoordinatesArray = getAdjacentCoordinates(lowPointCoordinates, fileName);
+    let paddedMap = padEdges(fileName);
+    adjacentCoordinatesArray.forEach(element => {
+        if (!visitedPointsArray.includes(element)) { // putting this in to test
+            let coordinates = element.split(',');
+            coordinates[0] = parseInt(coordinates[0]);
+            coordinates[1] = parseInt(coordinates[1]);
+            visitedPointsArray.push(coordinates[0].toString() + ',' + coordinates[1].toString());
+            if (paddedMap[coordinates[0]][coordinates[1]] > paddedMap[currentCoordinates[0]][currentCoordinates[1]]
+                && paddedMap[coordinates[0]][coordinates[1]] < 9) {
+                    // visitedPointsArray.push(coordinates[0].toString() + ',' + coordinates[1].toString());
+                    basinSize++;
+                    let newAdjacentCoordinatesArray = getAdjacentCoordinates(element, fileName);
+                    newAdjacentCoordinatesArray.forEach(element => {
+                        if (!visitedPointsArray.includes(element)) {
+                            console.log("!visitedPointsArray.includes(element)");
+                            console.log(!visitedPointsArray.includes('1,10'));
+                            console.log(visitedPointsArray, element);
+                            countBasinSize(element, fileName, basinSize, visitedPointsArray);
+                        } else {
+                            return;
+                        }
+                    });
+                } else {
+                    console.log('basinSize', basinSize);
+                    return basinSize; // idk if this may stop prematurely
+                }
+        }
+    });
+
+}
+
+function getBasinSizes(filename) {
+    // run countBasinSizes() on each point in low points array
+}
+
 // function checkAdjacentPoints(point, fileName) {
 //     let adjacentPoints = getAdjacentCoordinates(point, fileName);
 //     console.log('adjacentPoints', adjacentPoints);
@@ -226,14 +276,18 @@ function run() {
     // findLowPoints('day9TestInput3.txt');
     // calculateRiskLevel('day9TestInput.txt'); // 15
     // calculateRiskLevel('day9Input.txt'); // 506
-    console.log(padEdges('day9TestInput.txt'));
-    findLowPointCoordinates('day9TestInput.txt');
     // getAdjacentCoordinates('1,2', 'day9TestInput.txt');
     // getAdjacentCoordinates('1,10', 'day9TestInput.txt');
     // getAdjacentCoordinates('3,3', 'day9TestInput.txt');
     // getAdjacentCoordinates('5,7', 'day9TestInput.txt');
     // checkAdjacentPoints('1,2', 'day9TestInput.txt');
     // addBasinSizes('1,2', 'day9TestInput.txt');
+
+    // console.log(padEdges('day9TestInput.txt'));
+    // findLowPointCoordinates('day9TestInput.txt'); // [ '1,2', '1,10', '3,3', '5,7' ]
+    // countBasinSize('1,2', 'day9TestInput.txt', 1, ['1,2']);
+    console.log(countBasinSize('1,10', 'day9TestInput.txt', 1, ['1,10']));
+    console.log(countBasinSize('1,10', 'day9TestInput.txt', 3, ['1,10', '1,9', '2,10']));
 }
 
 run();
