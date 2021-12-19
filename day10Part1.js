@@ -42,22 +42,37 @@ function checkBrackets(fileName) {
             // console.log(line[i]);
             bracketObject[line[i]]++;
             console.log(bracketObject);
-            if (bracketObject['\)'] > bracketObject['\(']) {
-                illegalCharacters.push('\)');
-                // return;
-            }
-            if (bracketObject['\]'] > bracketObject['\[']) {
-                illegalCharacters.push('\]');
-                // return;
-            }
-            if (bracketObject['\}'] > bracketObject['\{']) {
-                illegalCharacters.push('\}');
-                // return;
-            }
-            if (bracketObject['\>'] > bracketObject['\<']) {
-                illegalCharacters.push('\>');
-                // return;
-            }
+
+            // ---
+
+            // if (bracketObject['\)'] > bracketObject['\(']) {
+            //     illegalCharacters.push('\)');
+            // }
+            // if (bracketObject['\]'] > bracketObject['\[']) {
+            //     illegalCharacters.push('\]');
+            // }
+            // if (bracketObject['\}'] > bracketObject['\{']) {
+            //     illegalCharacters.push('\}');
+            // }
+            // if (bracketObject['\>'] > bracketObject['\<']) {
+            //     illegalCharacters.push('\>');
+            // }
+
+            // ---
+
+            // new logic:
+            // iterate through brackets; tally
+            // if closing bracket appears while other kinds of opening brackets have still not been matched, add to illegal characters
+            // if ((bracketObject[line[i]] === '\)')
+            // && ((bracketObject['\['] > bracketObject['\]']) || (bracketObject['\{'] > bracketObject['\}']) || (bracketObject['\<'] > bracketObject['\>']))) {
+            //     illegalCharacters.push('\)');
+            // }
+
+            // ---
+
+            // new logic:
+            // for each opening bracket, add to queue of brackets that need matching
+            // for each closing bracket, deque - if the next to deque is not matching, add to illegal characters
         }
         console.log(bracketObject);
     });
@@ -69,4 +84,5 @@ function runTests(fileName) {
     checkBrackets(fileName);
 }
 
-runTests('day10TestInput.txt');
+// runTests('day10TestInput.txt');
+runTests('day10TestInput2.txt');
