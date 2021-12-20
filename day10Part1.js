@@ -125,6 +125,6 @@ function runTests(fileName) {
     console.log(addUpScore(fileName));
 }
 
-runTests('day10TestInput.txt'); // 26397
-// runTests('day10TestInput2.txt');
-// runTests('day10TestInput3.txt');
+// runTests('day10TestInput.txt'); // 26397
+// runTests('day10TestInput2.txt'); // 1197
+// runTests('day10TestInput3.txt'); // 25127
