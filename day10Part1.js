@@ -90,7 +90,7 @@ function checkBrackets(fileName) {
                 const lastOpeningBracket = bracketQueue.pop();
                 if (matchingBracketObject[lastOpeningBracket] !== line[i]) {
                     illegalCharacters.push(line[i]);
-                    illegalCharacters.push('end of line', line);
+                    // illegalCharacters.push('end of line', line);
                     return;
                 } else {
                     // current bracket is not an opening bracket, but matches the last opening bracket
@@ -101,13 +101,30 @@ function checkBrackets(fileName) {
         // console.log(bracketObject);
     });
     console.log(illegalCharacters);
+    return illegalCharacters;
+}
+
+function addUpScore(fileName) {
+    const illegalCharacters = checkBrackets(fileName);
+    const scores = {
+        '\)' : 3,
+        '\]' : 57,
+        '\}' : 1197,
+        '\>' : 25137
+    };
+    let totalScore = 0;
+    illegalCharacters.forEach(character => {
+        totalScore+=scores[character];
+    });
+    return totalScore;
 }
 
 function runTests(fileName) {
     readInput(fileName);
     checkBrackets(fileName);
+    console.log(addUpScore(fileName));
 }
 
-runTests('day10TestInput.txt');
+runTests('day10TestInput.txt'); // 26397
 // runTests('day10TestInput2.txt');
 // runTests('day10TestInput3.txt');
