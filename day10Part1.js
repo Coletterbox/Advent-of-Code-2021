@@ -24,24 +24,31 @@ function readInput(fileName) {
 }
 
 function checkBrackets(fileName) {
-    const bracketArray = readInput(fileName);
+    const bracketArray = readInput(fileName); // I should not have named it this
     const illegalCharacters = [];
-    bracketArray.forEach(line => {
-        let bracketObject = {
-            '\(' : 0,
-            '\)' : 0,
-            '\[' : 0,
-            '\]' : 0,
-            '\{' : 0,
-            '\}' : 0,
-            '\<' : 0,
-            '\>' : 0
+    let matchingBracketObject = {
+            '\(' : '\)',
+            '\[' : '\]',
+            '\{' : '\}',
+            '\<' : '\>'
         };
+    bracketArray.forEach(line => {
+        // let bracketObject = {
+        //     '\(' : 0,
+        //     '\)' : 0,
+        //     '\[' : 0,
+        //     '\]' : 0,
+        //     '\{' : 0,
+        //     '\}' : 0,
+        //     '\<' : 0,
+        //     '\>' : 0
+        // };
+        let bracketQueue = [];
         // iterate through characters
         for (let i in line) {
-            // console.log(line[i]);
-            bracketObject[line[i]]++;
-            console.log(bracketObject);
+            console.log('line[i]', line[i]);
+            // bracketObject[line[i]]++;
+            // console.log(bracketObject);
 
             // ---
 
@@ -73,8 +80,25 @@ function checkBrackets(fileName) {
             // new logic:
             // for each opening bracket, add to queue of brackets that need matching
             // for each closing bracket, deque - if the next to deque is not matching, add to illegal characters
+            // (might be best to use push/pop)
+
+            if (line[i] === '\{' || line[i] === '\(' || line[i] === '\<' || line[i] === '\[') {
+                bracketQueue.push(line[i]);
+                console.log('bracketQueue', bracketQueue);
+            } else {
+                // current bracket is not an opening bracket, so check it matches the last opening bracket
+                const lastOpeningBracket = bracketQueue.pop();
+                if (matchingBracketObject[lastOpeningBracket] !== line[i]) {
+                    illegalCharacters.push(line[i]);
+                    illegalCharacters.push('end of line', line);
+                    return;
+                } else {
+                    // current bracket is not an opening bracket, but matches the last opening bracket
+                    // bracketQueue.push(lastOpeningBracket, line[i]); // pushing lastOpeningBracket back because I already popped it // commenting this out - I wasn't supposed to do this
+                }
+            }
         }
-        console.log(bracketObject);
+        // console.log(bracketObject);
     });
     console.log(illegalCharacters);
 }
@@ -84,5 +108,6 @@ function runTests(fileName) {
     checkBrackets(fileName);
 }
 
-// runTests('day10TestInput.txt');
-runTests('day10TestInput2.txt');
+runTests('day10TestInput.txt');
+// runTests('day10TestInput2.txt');
+// runTests('day10TestInput3.txt');
