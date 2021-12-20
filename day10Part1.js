@@ -128,3 +128,4 @@ function runTests(fileName) {
 // runTests('day10TestInput.txt'); // 26397
 // runTests('day10TestInput2.txt'); // 1197
 // runTests('day10TestInput3.txt'); // 25127
+runTests('day10Input.txt'); // 394647
