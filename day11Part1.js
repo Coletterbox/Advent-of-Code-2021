@@ -56,9 +56,11 @@ function getAdjacentCoordinates(i, j) {
     return validIndexes;
 }
 
+// 'increment' given point function (does other stuff)
+// increment point unless 9
+// 9s change to 0 (and increment flash count), plus 'increment' adjacent points
+
 // takes ints
-// function incrementPoint(fileName, i, j, flashCount) {
-//     let inputArray = readInput(fileName);
 function incrementPoint(inputArray, i, j, flashCount) {
     let adjacentCoordinates = getAdjacentCoordinates(i, j);
     console.log(adjacentCoordinates);
@@ -80,7 +82,7 @@ function incrementPoint(inputArray, i, j, flashCount) {
     console.log('current flash count:', flashCount);
 }
 
-function incrementDay(fileName, inputArray, flashCount) {
+function step(inputArray, flashCount) {
     for (let i = 0; i < inputArray.length; i++) {
         for (let j = 0; j < inputArray[i].length; j++) {
             incrementPoint(inputArray, i, j, flashCount);
@@ -89,16 +91,25 @@ function incrementDay(fileName, inputArray, flashCount) {
     console.log(flashCount);
 }
 
-// "days" is supposed to be steps
-function incrementDays(fileName, flashCount, days) {
-    const inputArray = readInput(fileName);
+// function incrementDay(fileName, inputArray, flashCount) {
+//     for (let i = 0; i < inputArray.length; i++) {
+//         for (let j = 0; j < inputArray[i].length; j++) {
+//             incrementPoint(inputArray, i, j, flashCount);
+//         }
+//     }
+//     console.log(flashCount);
+// }
 
-    for (let i = 0; i < days; i++) {
-        incrementDay(fileName, inputArray, flashCount);
-    }
+// // "days" is supposed to be steps
+// function incrementDays(fileName, flashCount, days) {
+//     const inputArray = readInput(fileName);
+
+//     for (let i = 0; i < days; i++) {
+//         incrementDay(fileName, inputArray, flashCount);
+//     }
     
-    console.log(flashCount);
-}
+//     console.log(flashCount);
+// }
 
 function runTests() {
     // readInput('day11TestInput.txt');
@@ -111,15 +122,25 @@ function runTests() {
     // getAdjacentCoordinates(3, 2);
     // getAdjacentCoordinates(6, 7);
 
-    // incrementPoint('day11TestInput.txt', 0, 1, 0);
-    // incrementDay('day11TestInput.txt', 0);
-    // incrementDays('day11TestInput.txt', 0, 10);
-
-    // incrementDay('day11TestInput2.txt', 0);
-    // incrementPoint('day11TestInput2.txt', 0, 0, 0);
-    // incrementPoint(readInput('day11TestInput2.txt'), 1, 1, 0);
-
-    incrementDay('day11TestInput.txt', readInput('day11TestInput.txt'), 0)
+    // let inputArray = [[0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0]];
+    // incrementPoint(inputArray, 0, 0, 0);
+    // let inputArray2 = [[0, 0, 0, 0, 0],
+    //     [0, 0, 9, 0, 0],
+    //     [0, 0, 9, 0, 0],
+    //     [0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0]];
+    // incrementPoint(inputArray2, 2, 2, 0);
+    let inputArray3 = [[1, 1, 1, 1, 1],
+        [1, 9, 9, 9, 1],
+        [1, 9, 1, 9, 1],
+        [1, 9, 9, 9, 1],
+        [1, 1, 1, 1, 1]];
+    // incrementPoint(inputArray3, 2, 2, 0);
+    step(inputArray3, 0);
 }
 
 runTests();
