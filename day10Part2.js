@@ -98,26 +98,31 @@ function completeLines(fileName) {
     return endsOfLines;
 }
 
-// function addUpScore(fileName) {
-//     const illegalCharacters = checkBrackets(fileName);
-//     const scores = {
-//         '\)' : 3,
-//         '\]' : 57,
-//         '\}' : 1197,
-//         '\>' : 25137
-//     };
-//     let totalScore = 0;
-//     illegalCharacters.forEach(character => {
-//         totalScore+=scores[character];
-//     });
-//     return totalScore;
-// }
+function addUpScore(fileName) {
+    const endsOfLines = completeLines(fileName);
+    const scores = {
+        '\)' : 1,
+        '\]' : 2,
+        '\}' : 3,
+        '\>' : 4
+    };
+    let totalScores = [];
+    endsOfLines.forEach(line => {
+        let totalScore = 0;
+        line.forEach(character => {
+            totalScore = totalScore*5;
+            totalScore+=scores[character];
+        });
+        totalScores.push(totalScore);
+    });
+    return totalScores;
+}
 
 function runTests(fileName) {
     // readInput(fileName);
     // checkBrackets(fileName);
-    // console.log(addUpScore(fileName));
     completeLines(fileName);
+    console.log(addUpScore(fileName));
 }
 
 runTests('day10TestInput.txt');
