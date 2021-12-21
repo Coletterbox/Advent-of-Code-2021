@@ -133,4 +133,4 @@ function runTests(fileName) {
 }
 
 runTests('day10TestInput.txt'); // scores: [ 288957, 5566, 1480781, 995444, 294 ] // middle score: 288957
-// runTests('day10Input.txt');
+runTests('day10Input.txt'); // 2380061249
