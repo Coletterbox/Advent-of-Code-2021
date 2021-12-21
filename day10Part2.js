@@ -118,12 +118,19 @@ function addUpScore(fileName) {
     return totalScores;
 }
 
+function getMiddleScore(fileName) {
+    let scores = addUpScore(fileName);
+    scores = scores.sort((a, b) => a - b);
+    return scores[(scores.length-1)/2];
+}
+
 function runTests(fileName) {
     // readInput(fileName);
     // checkBrackets(fileName);
     completeLines(fileName);
     console.log(addUpScore(fileName));
+    console.log(getMiddleScore(fileName));
 }
 
-runTests('day10TestInput.txt');
+runTests('day10TestInput.txt'); // scores: [ 288957, 5566, 1480781, 995444, 294 ] // middle score: 288957
 // runTests('day10Input.txt');
