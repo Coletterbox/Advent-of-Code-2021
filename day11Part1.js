@@ -6,6 +6,23 @@
     // if 9, become 0; increment flashes; increment adjacent octopuses (i.e. call function)
 // function that takes days as parameter; increments days; returns flashes
 
+// ---
+
+// (rewrote this to start again, but in the process realised that the issue was my definition of adjacent)
+
+// one step:
+// run increment function on every octopus
+
+    // increment function:
+    // increment
+    // where energy level > 9
+        // increment flashes
+        // run increment function on adjacent
+
+// set energy levels above 9 back to 0
+
+// ---
+
 function readInput(fileName) {
     const fs = require('fs');
     const inputArray = [];
@@ -47,6 +64,11 @@ function getAdjacentCoordinates(i, j) {
     adjacentCoordinates.push((i+1).toString() + ',' + j.toString());
     adjacentCoordinates.push(i.toString() + ',' + (j-1).toString());
     adjacentCoordinates.push(i.toString() + ',' + (j+1).toString());
+    // diagonals that I didn't realise were included
+    adjacentCoordinates.push((i-1).toString() + ',' + (j-1).toString());
+    adjacentCoordinates.push((i-1).toString() + ',' + (j+1).toString());
+    adjacentCoordinates.push((i+1).toString() + ',' + (j-1).toString());
+    adjacentCoordinates.push((i+1).toString() + ',' + (j+1).toString());
     adjacentCoordinates.forEach(point => {
         if (!point.includes('-') && !point.includes('10')) {
             validIndexes.push(point);
