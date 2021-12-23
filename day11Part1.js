@@ -83,33 +83,55 @@ function getAdjacentCoordinates(i, j) {
 // 9s change to 0 (and increment flash count), plus 'increment' adjacent points
 
 // takes ints
-function incrementPoint(inputArray, i, j, flashCount) {
+function incrementPoint(inputArray, i, j, flashCount, flashedArray) {
     let adjacentCoordinates = getAdjacentCoordinates(i, j);
     console.log(adjacentCoordinates);
 
-    if (inputArray[i][j] < 9) {
-        inputArray[i][j]++;
-    } else {
-        inputArray[i][j] = 0;
+    // if (inputArray[i][j] < 9) {
+    //     inputArray[i][j]++;
+    // } else {
+    //     inputArray[i][j] = 0;
+    //     flashedArray.push(i.toString() + ',' + j.toString());
+    //     flashCount++;
+    //     adjacentCoordinates.forEach(coordinates => {
+    //         let coordinateArray = coordinates.split(',');
+    //         let newI = parseInt(coordinateArray[0]);
+    //         let newJ = parseInt(coordinateArray[1]);
+    //         console.log('newI, newJ', newI, newJ);
+    //         incrementPoint(inputArray, newI, newJ, flashCount, flashedArray);
+    //     });
+    // }
+
+    inputArray[i][j]++;
+    if (inputArray[i][j] > 9) {
         flashCount++;
+        flashedArray.push(i.toString() + ',' + j.toString());
+        inputArray[i][j] = 0;
         adjacentCoordinates.forEach(coordinates => {
             let coordinateArray = coordinates.split(',');
             let newI = parseInt(coordinateArray[0]);
             let newJ = parseInt(coordinateArray[1]);
             console.log('newI, newJ', newI, newJ);
-            incrementPoint(inputArray, newI, newJ, flashCount);
+            incrementPoint(inputArray, newI, newJ, flashCount, flashedArray);
         });
     }
+
     console.log(inputArray);
     console.log('current flash count:', flashCount);
 }
 
 function step(inputArray, flashCount) {
+    let flashedArray = [];
     for (let i = 0; i < inputArray.length; i++) {
         for (let j = 0; j < inputArray[i].length; j++) {
-            incrementPoint(inputArray, i, j, flashCount);
+            incrementPoint(inputArray, i, j, flashCount, flashedArray);
         }
     }
+    for (let k = 0; k < flashedArray; k++) {
+        let coordinates = flashedArray[k].split(',');
+        inputArray[coordinates[0]][coordinates[1]] = 0;
+    }
+    console.log(inputArray);
     console.log(flashCount);
 }
 
@@ -156,13 +178,20 @@ function runTests() {
     //     [0, 0, 0, 0, 0],
     //     [0, 0, 0, 0, 0]];
     // incrementPoint(inputArray2, 2, 2, 0);
-    let inputArray3 = [[1, 1, 1, 1, 1],
-        [1, 9, 9, 9, 1],
-        [1, 9, 1, 9, 1],
-        [1, 9, 9, 9, 1],
+    // let inputArray3 = [[1, 1, 1, 1, 1],
+    //     [1, 9, 9, 9, 1],
+    //     [1, 9, 1, 9, 1],
+    //     [1, 9, 9, 9, 1],
+    //     [1, 1, 1, 1, 1]];
+    // // incrementPoint(inputArray3, 2, 2, 0);
+    // step(inputArray3, 0);
+    let inputArray4 = [[1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 9, 1, 1],
+        [1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1]];
     // incrementPoint(inputArray3, 2, 2, 0);
-    step(inputArray3, 0);
+    step(inputArray4, 0);
 }
 
 runTests();
