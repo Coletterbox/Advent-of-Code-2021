@@ -104,7 +104,9 @@ function incrementPoint(inputArray, i, j, flashCount, flashedArray) {
 
     inputArray[i][j]++;
     if (inputArray[i][j] > 9) {
+        console.log(flashCount);
         flashCount++;
+        console.log(flashCount);
         flashedArray.push(i.toString() + ',' + j.toString());
         inputArray[i][j] = 0;
         adjacentCoordinates.forEach(coordinates => {
